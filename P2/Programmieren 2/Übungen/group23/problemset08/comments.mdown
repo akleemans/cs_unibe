@@ -1,5 +1,0 @@
-# Comments #
-## By AK ##
-
-You seem to have forgotten the main task: To __design__ the GUI. While you
-implemented a Gui, you didn't post any pictures of prototypes or described why you chose your design.

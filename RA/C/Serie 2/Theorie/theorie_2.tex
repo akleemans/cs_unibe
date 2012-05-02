@@ -1,0 +1,182 @@
+\documentclass[a4paper,10pt,headlines=3.2]{scrartcl}
+
+
+% Basispakete
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage[automark]{scrpage2}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{ifthen}
+\usepackage{calc}
+\usepackage{tikz}
+\usepackage{ngerman}
+
+\usepackage{graphicx}           %Bilder
+\usepackage{amsmath}            %Math. Zeichen
+\usepackage{pifont}             %Skalierbare Schriftart
+\usepackage{array}
+\usepackage{epsfig}             %Erweiterte Grafiken
+\usepackage{makeidx}            %Stichwortverzeichnis
+%\usepackage[pdftex]{color} 
+
+\newcommand{\changefont}[3]{
+\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
+
+\makeindex
+
+\usepackage[automark]{scrpage2}
+\usepackage[nosectionbib]{apacite}               %Zitieren
+
+%\usepackage[colorlinks]{hyperref}%Hyperlinks
+
+\usepackage{lmodern}
+\usepackage{scrpage2}           %KOMA-Script
+\usepackage{tipa}
+\usepackage{qtree}
+
+\usepackage{remreset}			%Fussnoten global
+\makeatletter
+\@removefromreset{footnote}{chapter}
+\makeatother 
+
+\setcounter{tocdepth}{3}
+
+%Kopfzeilen
+\pagestyle{scrheadings}         %Seitenstil scrheadings verwenden
+
+%\setlength{\textheight}{24cm}
+%\setlength{\textwidth}{16cm}
+%\setlength{\topmargin}{-2cm}
+%\setlength{\oddsidemargin}{0cm}
+
+% Groesse des Textbereiches in der Seite
+\setlength{\textwidth}{16cm}
+\setlength{\textheight}{21.3cm}
+% Kopf- und Fusszeile, Hoehe und Abstand vom Text
+\setlength{\headheight}{15pt}
+\setlength{\headsep}{0.8cm}
+% Linker Seiteneinzug
+\setlength{\oddsidemargin}{2.5cm} \addtolength{\oddsidemargin}{-1in}
+\setlength{\evensidemargin}{2.5cm} \addtolength{\evensidemargin}{-1in}
+% Andere Groessen ausrechnen (vertikal zentrieren)
+\setlength{\footskip}{\headsep}
+\addtolength{\footskip}{\headheight}
+\setlength{\topmargin}{\paperheight}
+\addtolength{\topmargin}{-\textheight}
+\addtolength{\topmargin}{-\headheight}
+\addtolength{\topmargin}{-\headsep}
+\addtolength{\topmargin}{-\footskip}
+\addtolength{\topmargin}{-2in}
+\addtolength{\topmargin}{-0.5\topmargin}
+
+%Abstand zurücksetzen
+\setlength{\headheight}{20pt}
+
+\usepackage{listings} 
+\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt} \lstset{language=Java} 
+\changefont{cmss}{m}{n}
+
+%Tabellen
+\usepackage{booktabs}
+\usepackage{multirow}
+
+%Kopfzeilen
+\clearscrheadfoot
+%\renewcommand{\headheight}{40pt} 
+\ihead[]{Rechnerarchitektur \\Frühlingssemester 2012 \\Institut für angewandte
+Mathematik} % - linke Kopfzeile 
+\ohead[asdasd]{Übung 2, Abgabe 29. März 2011 \\Adrianus Kleemans
+[07-111-693] \\Christa Biberstein [09-104-381]} % - linke Kopfzeile 
+\setheadsepline{.4pt} %Separate Linie im Kopf
+\cfoot[\pagemark]{\pagemark} %- mittlere Fusszeile 
+
+% Nummerierung
+\renewcommand \thesection {\arabic{section}.}
+\renewcommand \thesubsection {\arabic{section}.\arabic{subsection}.}
+\renewcommand \thesubsubsection {\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.}
+
+\begin{document}
+\section{Function Pointer}
+\begin{verbatim}
+A: 10
+B: 11
+C: 12
+\end{verbatim}
+
+\section{Const}
+\begin{itemize}
+\item \texttt{int * a}: Zeiger auf int
+\item \texttt{int const * b}: Zeiger auf konstanten int
+\item \texttt{int * const c}: Konstanter Zeiger auf int
+\item \texttt{int const * const d}: Konstanten Zeiger auf konstanten int
+\end{itemize}
+
+
+\section{Arrays}
+Korrekt müsste Zeile 3 heissen: \texttt{for (i=0; i<10; i++) \{}.\\
+Der Array hat 10 Elemente: Das Problem mit der Schleife der Aufgabe ist, dass bei der letzten Iteration auf Element \texttt{array[10]} zugegriffen wird, welches ein ungültiger Zugriff ist (der Array wurde nur von \texttt{array[0]} bis \texttt{array[9]} deklariert).
+
+\section{MIPS Branch Instructions}
+\begin{verbatim}
+int i;
+for (i = 11; i != 0; i--) {
+  #do something
+}
+\end{verbatim}
+
+\section{MIPS More Branch Instructions}
+\begin{verbatim}
+slt $at, $s2, $s1
+beq $at, $zero, Label
+\end{verbatim}
+Zuerst wird, wenn, wenn $s2$ (``set on less than'') kleiner ist als $s1$, $at$ auf 1 gesetzt. Dann wird per $beq$ (``branch on equal'') geprüft, ob $at$ 0 ist, was in jedem anderen Fall zutrifft (also wenn $s1 \geq s2$).
+
+\section{Endianness}
+\begin{center}
+\begin{tabular}{ccccc}
+\textbf{Speicheradresse} & \textbf{10004} & \textbf{10005} & \textbf{10006} & \textbf{10007}\\
+\textbf{Wert (hex)} & 6d & 8c & 24 & 00
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+\item[(a)] \textbf{Big Endian} (\textit{most significant byte} an der niedrigsten Speicheradresse): \\
+\texttt{10007} ist das niederwertigste Byte\\
+Wert: $6d8c2400_{16} = 1837900800_{10}$
+\item[(b)] \textbf{Little Endian} (\textit{least significant byte} an der niedrigsten Speicheradresse): \\
+\texttt{10004} ist das niederwertigste Byte\\
+Wert: $00248c6d_{16} = 2395245_{10}$
+\end{itemize}
+
+\section{Array-Zugriff}
+C-Programm:
+\begin{verbatim}
+void mul(short x[], int index, int mul) {
+  x[index] *= mul;
+}
+\end{verbatim}
+Adresse des ersten Arrayelements: \$t2 \\
+\texttt{index}: \$t1 \\
+\texttt{mul}: \$t0 \\\\
+Assembler:
+\begin{verbatim}
+mul: add $t3, $t1, $t1  // index*2 berechnen (da short-Array)
+     add $t4, $t2, $t3  // ...und damit Adresse von x[index] berechnen
+                        // $t4 enthält jetzt genaue Adresse)
+     
+     mult $t4, $t0      // multiplizieren
+     mflo $t4           // Resultat holen und unter $t4 speichern
+     
+     jr $ra             // zurückspringen (temporäre $tX-Register müssen nicht
+                        // restored werden)
+\end{verbatim}
+
+
+\section{MIPS Register/Hauptspeicher}
+\begin{verbatim}
+lw $s2, 40($s1)
+\end{verbatim}
+Angenommen, der Array ist ein Integer-Array, multiplizieren wir den Speicherbedarf der einzelnen Werte des Arrays (4 Byte) mit der Anzahl zu überspringenden Wörter (10) \texttt{= 40}.
+\end{document}

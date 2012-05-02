@@ -1,0 +1,366 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" 
+		"http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+</head>
+
+<body onload="printWeekDays()">
+
+<form name="startdate" method="post" action="">
+Startdatum:
+<select name="sday" onChange="OnChange(this.form.sday)">
+	<option value="01" selected>1</option>
+	<option value="02">2</option>
+	<option value="03">3</option>
+	<option value="04">4</option>
+	<option value="05">5</option>
+	<option value="06">6</option>
+	<option value="07">7</option>
+	<option value="08">8</option>
+	<option value="09">9</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+	<option value="13">13</option>
+	<option value="14">14</option>
+	<option value="15">15</option>
+	<option value="16">16</option>
+	<option value="17">17</option>
+	<option value="18">18</option>
+	<option value="19">19</option>
+	<option value="20">20</option>
+	<option value="21">21</option>
+	<option value="22">22</option>
+	<option value="23">23</option>
+	<option value="24">24</option>
+	<option value="25">25</option>
+	<option value="26">26</option>
+	<option value="27">27</option>
+	<option value="28">28</option>
+	<option value="29">29</option>
+	<option value="30">30</option>
+	<option value="31">31</option>
+</select>.
+<select name="smonth" onChange="OnChange(this.form.smonth)">
+	<option value="01">Jan</option>
+	<option value="02">Feb</option>
+	<option value="03">Mar</option>
+	<option value="04">Apr</option>
+	<option value="05">Mai</option>
+	<option value="06">Jun</option>
+	<option value="07">Jul</option>
+	<option value="08">Aug</option>
+	<option value="09">Sep</option>
+	<option value="10">Okt</option>
+	<option value="11" selected>Nov</option>
+	<option value="12">Dez</option>
+</select>.
+<select name="syear" onChange="OnChange(this.form.syear)">
+	<option value="2011" selected>2011</option>
+	<option value="2012">2012</option>
+	<option value="2013">2013</option>
+	<option value="2014">2014</option>
+	<option value="2015">2015</option>
+	<option value="2016">2016</option>
+	<option value="2017">2017</option>
+	<option value="2018">2018</option>
+	<option value="2019">2019</option>
+</select> - Zeit:
+<select name="shour" onChange="OnChange(this.form.shour)">
+	<option value="00">00</option>
+	<option value="01">01</option>
+	<option value="02">02</option>
+	<option value="03">03</option>
+	<option value="04">04</option>
+	<option value="05">05</option>
+	<option value="06">06</option>
+	<option value="07">07</option>
+	<option value="08">08</option>
+	<option value="09">09</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12" selected>12</option>
+	<option value="13">13</option>
+	<option value="14">14</option>
+	<option value="15">15</option>
+	<option value="16">16</option>
+	<option value="17">17</option>
+	<option value="18">18</option>
+	<option value="19">19</option>
+	<option value="20">20</option>
+	<option value="21">21</option>
+<option value="22">22</option>
+	<option value="23">23</option>
+</select> : 
+<select name="smins" onChange="OnChange(this.form.smins)">
+	<option value="00" selected>00</option>
+	<option value="05">05</option>
+	<option value="10">10</option>
+	<option value="15">15</option>
+	<option value="20">20</option>
+	<option value="25">25</option>
+	<option value="30">30</option>
+	<option value="35">35</option>
+	<option value="40">40</option>
+	<option value="45">45</option>
+	<option value="50">50</option>
+	<option value="55">55</option>
+</select> Uhr <div id="startday" style="display:inline;"></div>
+</form>
+<form name="enddate" method="post" action="">
+Enddatum:
+<select name="day" onChange="OnChangeEndDate()">
+	<option value="01" selected>1</option>
+	<option value="02">2</option>
+	<option value="03">3</option>
+	<option value="04">4</option>
+	<option value="05">5</option>
+	<option value="06">6</option>
+	<option value="07">7</option>
+	<option value="08">8</option>
+	<option value="09">9</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+	<option value="13">13</option>
+	<option value="14">14</option>
+	<option value="15">15</option>
+	<option value="16">16</option>
+	<option value="17">17</option>
+	<option value="18">18</option>
+	<option value="19">19</option>
+	<option value="20">20</option>
+	<option value="21">21</option>
+	<option value="22">22</option>
+	<option value="23">23</option>
+	<option value="24">24</option>
+	<option value="25">25</option>
+	<option value="26">26</option>
+	<option value="27">27</option>
+	<option value="28">28</option>
+	<option value="29">29</option>
+	<option value="30">30</option>
+	<option value="31">31</option>
+</select>.
+<select name="month" onChange="OnChangeEndDate()">
+	<option value="01">Jan</option>
+	<option value="02">Feb</option>
+	<option value="03">Mar</option>
+	<option value="04">Apr</option>
+	<option value="05">Mai</option>
+	<option value="06">Jun</option>
+	<option value="07">Jul</option>
+	<option value="08">Aug</option>
+	<option value="09">Sep</option>
+	<option value="10">Okt</option>
+	<option value="11" selected>Nov</option>
+	<option value="12">Dez</option>
+</select>.
+<select name="year" onChange="OnChangeEndDate()">
+	<option value="2011" selected>2011</option>
+	<option value="2012">2012</option>
+	<option value="2013">2013</option>
+	<option value="2014">2014</option>
+	<option value="2015">2015</option>
+	<option value="2016">2016</option>
+	<option value="2017">2017</option>
+	<option value="2018">2018</option>
+	<option value="2019">2019</option>
+	<option value="2020">2020</option>
+</select> - Zeit:
+<select name="hour" onChange="OnChangeEndDate()">
+	<option value="00">00</option>
+	<option value="01">01</option>
+	<option value="02">02</option>
+	<option value="03">03</option>
+	<option value="04">04</option>
+	<option value="05">05</option>
+	<option value="06">06</option>
+	<option value="07">07</option>
+	<option value="08">08</option>
+	<option value="09">09</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+	<option value="13" selected>13</option>
+	<option value="14">14</option>
+	<option value="15">15</option>
+	<option value="16">16</option>
+	<option value="17">17</option>
+	<option value="18">18</option>
+	<option value="19">19</option>
+	<option value="20">20</option>
+	<option value="21">21</option>
+<option value="22">22</option>
+	<option value="23">23</option>
+</select> : 
+<select name="mins" onChange="OnChangeEndDate()">
+	<option value="00" selected>00</option>
+	<option value="05">05</option>
+	<option value="10">10</option>
+	<option value="15">15</option>
+	<option value="20">20</option>
+	<option value="25">25</option>
+	<option value="30">30</option>
+	<option value="35">35</option>
+	<option value="40">40</option>
+	<option value="45">45</option>
+	<option value="50">50</option>
+	<option value="55">55</option>
+</select> Uhr <div id="endday" style="display:inline;"></div>
+</form>
+
+<script type="text/javascript">
+
+function checkdate(m, d, y) {
+    return m > 0 && m < 13 && y > 0 && y < 32768 && d > 0 && d <= (new Date(y, m, 0)).getDate();
+}
+
+function printDate(d) {
+	var weekday = new Array(7);	
+	weekday[0]="Sonntag";
+	weekday[1]="Montag";
+	weekday[2]="Dienstag";
+	weekday[3]="Mittwoch";
+	weekday[4]="Donnerstag";
+	weekday[5]="Freitag";
+	weekday[6]="Samstag";
+	var ret = weekday[d.getDay()];
+	return ret;
+}
+
+function printStartDay() {
+	var d = new Date();
+	var yy = document.forms.startdate.syear.selectedIndex+2011;
+	var mm = document.forms.startdate.smonth.selectedIndex;
+	var dd = document.forms.startdate.sday.selectedIndex+1;
+	//alert("Startday:"+dd+" "+mm+" "+yy);
+	
+	d.setFullYear(yy,mm,dd);
+	document.getElementById("startday").innerHTML = "("+printDate(d)+")";
+	return true;
+}
+
+function sameDate() {	
+	var ya = document.forms.startdate.syear.selectedIndex+2011;
+	var ma = document.forms.startdate.smonth.selectedIndex;
+	var da = document.forms.startdate.sday.selectedIndex+1;
+	
+	var yb = document.forms.enddate.year.selectedIndex+2011;
+	var mb = document.forms.enddate.month.selectedIndex;
+	var db = document.forms.enddate.day.selectedIndex+1;
+	
+	if (ya==yb && ma==mb && da==db) {return true;}
+	else {return false;}
+}
+
+function printEndDay() {
+	var d = new Date();
+	var yy = document.forms.enddate.year.selectedIndex+2011;
+	var mm = document.forms.enddate.month.selectedIndex;
+	var dd = document.forms.enddate.day.selectedIndex+1;
+
+	d.setFullYear(yy,mm,dd);
+	document.getElementById("endday").innerHTML = "("+printDate(d)+")";
+
+	if (sameDate() == true) {
+		document.getElementById("endday").innerHTML = ""; }
+
+	return true;
+}
+
+// ENDDATE IS CHANGED
+function OnChangeEndDate() {
+	var d = document.forms.enddate.day.selectedIndex+1;
+	var m = document.forms.enddate.month.selectedIndex+1;
+	var y = document.forms.enddate.year.selectedIndex+2011;
+	
+	// check if date is correct
+	if (checkdate(m, d, y) == false) {
+		alert("Please enter a valid date.");
+		var lastday = 0;
+		for (i=1;i<5;i++) {
+			lastday = d-i;
+			if (checkdate(m,lastday,y) == true) break;
+		}
+		//set last day of month
+		document.forms.enddate.day.selectedIndex = lastday-1;
+	}
+		
+	printWeekDays();
+}
+
+function printWeekDays() {
+	printStartDay();
+	printEndDay();
+	return true;
+}
+
+// STARTDATE IS CHANGED
+function OnChange(dropdown) {
+	var d = document.forms.startdate.sday.selectedIndex+1;
+	var m = document.forms.startdate.smonth.selectedIndex+1;
+	var y = document.forms.startdate.syear.selectedIndex+2011;
+	
+	// check if date is correct
+	if (checkdate(m, d, y) == false) {
+		alert("Please enter a valid date.");
+		var lastday = 0;
+		for (i=1;i<5;i++) {
+			lastday = d-i;
+			if (checkdate(m,lastday,y) == true) break;
+		}
+		//set last day of month
+		document.forms.startdate.sday.selectedIndex = lastday-1;
+	}
+
+	var myindex  = dropdown.selectedIndex;
+	var SelValue = dropdown.options[myindex].value;
+
+	// reset date
+	document.forms.enddate.day.selectedIndex = document.forms.startdate.sday.selectedIndex;
+	document.forms.enddate.month.selectedIndex = document.forms.startdate.smonth.selectedIndex;
+	document.forms.enddate.year.selectedIndex = document.forms.startdate.syear.selectedIndex;	
+	document.forms.enddate.hour.selectedIndex = document.forms.startdate.shour.selectedIndex+1;	
+	document.forms.enddate.mins.selectedIndex = document.forms.startdate.smins.selectedIndex;
+	
+	// control variable
+	var chk = false;
+	var chk2= false;
+
+	// OVERFLOW: HOUR-FIELD --> change day-field
+	myindex = document.forms.startdate.shour.selectedIndex;
+	if (document.forms.startdate.shour.options[myindex].value == 23) { 
+		document.forms.enddate.hour.selectedIndex = 0;
+		document.forms.enddate.day.selectedIndex = document.forms.enddate.day.selectedIndex + 1;
+		chk = true;
+	}
+	
+	// OVERFLOW: DAY-FIELD	--> change month-field
+	//myindex = document.forms.startdate.sday.selectedIndex; //day should be dynamic
+	d = document.forms.startdate.sday.selectedIndex+1;
+	m = document.forms.startdate.smonth.selectedIndex+1;
+	y = document.forms.startdate.syear.selectedIndex+2011;
+	
+	if (chk && checkdate(m, d+1, y) == false) { 
+		document.forms.enddate.day.selectedIndex = 0;
+		document.forms.enddate.month.selectedIndex = document.forms.enddate.month.selectedIndex + 1;
+		chk2 = true;
+	}
+	
+	// OVERFLOW: MONTH-FIELD --> change year-field
+	myindex = document.forms.startdate.smonth.selectedIndex;
+	if (chk2 && document.forms.startdate.smonth.options[myindex].value == 12) { 
+		document.forms.enddate.month.selectedIndex = 0;
+		document.forms.enddate.year.selectedIndex = document.forms.enddate.year.selectedIndex + 1;
+	}
+	
+	printWeekDays();
+
+	return true;
+}
+</script>
+
+</body>
+</html>

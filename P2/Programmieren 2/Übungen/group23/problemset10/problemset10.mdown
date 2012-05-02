@@ -1,0 +1,19 @@
+# Problemset 10, a todo application in Smalltalk #
+
+Your boss at ACME Inc. is more than pleased with your Ursuppe game. However, he noticed that whenever he asks you to do a number of things, it's cumbersome for him to remember what exactly it is he asked, when checking your solution. So he asks you to write a to do application. Since it's just for you and him, there aren't any users, no login, nothing, just a website with todos, and a button to add new ones. He asks you to do it in Seaside for Pharo, because he read at the hairdressers that the cool kids from today have had a look at Seaside.
+
+From the hairdresser's, he clipped out the following set of instructions:
+
+- Run Seaside.app, a window appears.
+- Open <http://localhost:8080> in your web browser.
+- In the web browser, you're offered to create a new component. nter "Todo" as a component name, and click create.
+- You're now queried for your first name and last name. Enter them in the web browser.
+- Now your component should be active under <http://localhost:8080/Todo>.
+- Go back to the Seaside Window.
+- In the system browser window inside the Seaside window, scroll down to the category "Seaside-User-Examples in the left-most pane."
+- Find the class "Todo" there.
+- Click it and look at the renderContentOn: method.
+- Start from that method. Modify it, add more classes, and create a todo list application
+- To save your work, in the Seaside window, click "Save and quit" in the menu that comes up when you click on empty space. When re-opening Seaside, you'll be exactly where you left off.
+
+Your todo list application should at least allow viewing all tasks, and adding new tasks.

@@ -1,0 +1,92 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<h1>Registration:</h1>
+
+#{if flash.error}
+	<p style="color:#c00;">
+		${flash.error}
+	</p>
+#{/if}
+
+#{form @publicApplication.RegUser()}
+<p>
+	<label for="public" style="position:absolute;left:470px;top:50px;"> public: </label>
+
+	<label for="name" title="used for login"> Username*: </label>
+	<input type="text" name="name" id="name" title="used for login" placeholder="used for login" value ="${flash.name}" style="position:absolute;left:300px;" />
+	<span class ="error" style="color:#c00;position:absolute;left:470px;"> #{error 'name' /}</span>
+</p>
+<p>
+	<label for="nickname"> Full Name*: </label>
+	<input type="text" name="nickname" id="nickname" value ="${flash.nickname}" style="position:absolute;left:300px;"/>
+	<span class ="error" style="color:#c00;position:absolute;left:470px;"> #{error 'nickname' /}</span>
+</p>
+<p>
+	<label for="password"> Password*: </label>
+	<input type="password" name="password" id="password" value ="${flash.password}" style="position:absolute;left:300px;"/ >
+	<span class ="error" style="color:#c00;position:absolute;left:470px;"> #{error 'password' /}</span>
+</p>
+<p>
+	<label for="confirmPW"> Confirm Password*: </label>
+	<input type="password" name="confirmPW" id="confirmPW" value ="${flash.confirmPW}" style="position:absolute;left:300px;"/ >
+	<span class ="error" style="color:#c00;position:absolute;left:470px;"> #{error 'confirmPW' /}</span>
+</p>
+<p>
+	<label for="birthday"> Birthday Date*: </label>
+	<input type="birthday" name="birthday" id="birthday" placeholder="YYYY-MM-DD" style="position:absolute;left:300px;"/ >
+	<span class ="error" style="color:#c00;position:absolute;left:500px;"> #{error 'birthday' /}</span>
+
+	<input type="checkbox" name="is_visible" style = "position:absolute;left:470px;"/>
+</p>
+<p>
+	<label for="email"> E-Mail addresses: </label>
+</p>
+<p>
+	<label for="emailP"> privat: </label>
+	<input type="emailP" name="emailP" id="emailP" value="${emailP}" style="position:absolute;left:300px;"/ >
+	<span class ="error" style="color:#c00"> #{error 'emailP' /}</span>
+
+	<input type="checkbox" name="is_emailP_visible" style = "position:absolute;left:470px;"/>
+</p>
+<p>
+	<label for="emailB"> business: </label>
+	<input type="emailB" name="emailB" id="emailB" value="${emailB}" style="position:absolute;left:300px;"/ >
+	<span class ="error" style="color:#c00"> #{error 'emailB' /}</span>
+
+	<input type="checkbox" name="is_emailB_visible" style="position:absolute;left:470px;"/>
+</p>
+<p>
+	<label for="tel"> Telephone numbers: </label>
+</p>
+<p>
+	<label for="telP"> privat: </label>
+	<input type="telP" name="telP" id="telP" value="${telP}" style="position:absolute;left:300px;"/ >
+	<span class ="error" style="color:#c00"> #{error 'telP' /}</span>
+	
+	<input type="checkbox" name="is_telP_visible" style="position:absolute;left:470px;"/>
+</p>
+<p>
+	<label for="telB"> business: </label>
+	<input type="telB" name="telB" id="telB" value="${telB}" style="position:absolute;left:300px;"/ >
+	<span class ="error" style="color:#c00"> #{error 'telB' /}</span>
+
+	<input type="checkbox" name="is_telB_visible" style="position:absolute;left:470px;"/>
+</p>
+<p>
+	<label for="notes"> Notes: </label>
+	<input type="checkbox" name="is_note_visible" style="position:absolute;left:470px;" #{if is_note_visible} checked #{/if}/>
+</p>
+<p>
+	<textarea rows="6" cols="100" name="notes" value="${notes}">${notes}</textarea>
+</p>
+
+<hr />
+<p>
+	<input type="submit" value="Submit"/>
+</p>
+
+<p>
+	<a href="@{Application.index()}">back to Login</a>
+</p>
+#{/form}

@@ -1,0 +1,192 @@
+\documentclass[a4paper,10pt,headlines=3.2]{scrartcl}
+
+
+% Basispakete
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage[automark]{scrpage2}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{ifthen}
+\usepackage{calc}
+\usepackage{tikz}
+\usepackage{ngerman}
+
+\usepackage{graphicx}           %Bilder
+\usepackage{amsmath}            %Math. Zeichen
+\usepackage{pifont}             %Skalierbare Schriftart
+\usepackage{array}
+\usepackage{epsfig}             %Erweiterte Grafiken
+\usepackage{makeidx}            %Stichwortverzeichnis
+%\usepackage[pdftex]{color} 
+
+\newcommand{\changefont}[3]{
+\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
+
+\makeindex
+
+\usepackage[automark]{scrpage2}
+\usepackage[nosectionbib]{apacite}               %Zitieren
+
+%\usepackage[colorlinks]{hyperref}%Hyperlinks
+
+\usepackage{lmodern}
+\usepackage{scrpage2}           %KOMA-Script
+\usepackage{tipa}
+\usepackage{qtree}
+
+\usepackage{remreset}			%Fussnoten global
+\makeatletter
+\@removefromreset{footnote}{chapter}
+\makeatother 
+
+\setcounter{tocdepth}{3}
+
+%Kopfzeilen
+\pagestyle{scrheadings}         %Seitenstil scrheadings verwenden
+
+%\setlength{\textheight}{24cm}
+%\setlength{\textwidth}{16cm}
+%\setlength{\topmargin}{-2cm}
+%\setlength{\oddsidemargin}{0cm}
+
+% Groesse des Textbereiches in der Seite
+\setlength{\textwidth}{16cm}
+\setlength{\textheight}{21.3cm}
+% Kopf- und Fusszeile, Hoehe und Abstand vom Text
+\setlength{\headheight}{15pt}
+\setlength{\headsep}{0.8cm}
+% Linker Seiteneinzug
+\setlength{\oddsidemargin}{2.5cm} \addtolength{\oddsidemargin}{-1in}
+\setlength{\evensidemargin}{2.5cm} \addtolength{\evensidemargin}{-1in}
+% Andere Groessen ausrechnen (vertikal zentrieren)
+\setlength{\footskip}{\headsep}
+\addtolength{\footskip}{\headheight}
+\setlength{\topmargin}{\paperheight}
+\addtolength{\topmargin}{-\textheight}
+\addtolength{\topmargin}{-\headheight}
+\addtolength{\topmargin}{-\headsep}
+\addtolength{\topmargin}{-\footskip}
+\addtolength{\topmargin}{-2in}
+\addtolength{\topmargin}{-0.5\topmargin}
+
+%Abstand zurücksetzen
+\setlength{\headheight}{20pt}
+
+\usepackage{listings} 
+\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt} \lstset{language=Java} 
+\changefont{cmss}{m}{n}
+
+%Tabellen
+\usepackage{booktabs}
+\usepackage{multirow}
+
+%Kopfzeilen
+\clearscrheadfoot
+%\renewcommand{\headheight}{40pt} 
+\ihead[]{Rechnerarchitektur \\Frühlingssemester 2012 \\Institut für angewandte
+Mathematik} % - linke Kopfzeile 
+\ohead[asdasd]{Übung 3, Abgabe 18. April 2012 \\ Adrianus Kleemans
+[07-111-693] \\Christa Biberstein [09-104-381]} % - linke Kopfzeile 
+\setheadsepline{.4pt} %Separate Linie im Kopf
+\cfoot[\pagemark]{\pagemark} %- mittlere Fusszeile 
+
+% Nummerierung
+\renewcommand \thesection {\arabic{section}.}
+\renewcommand \thesubsection {\arabic{section}.\arabic{subsection}.}
+\renewcommand \thesubsubsection {\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.}
+
+\begin{document}
+\section{Performance-Berechnungen}
+\begin{center}
+\begin{tabular}{llll}
+\textbf{Op} & \textbf{Freq} & \textbf{$CPI_i$} & \textbf{Freq x $CPI_i$}\\
+\texttt{ALU} & 25\% & 5 & 1.25\\
+\texttt{LOAD} & 25\% & 10 & 2.5\\
+\texttt{STORE} & 25\% & 7.5 & 1.875\\
+\texttt{Branch} & 25\% & 7.5 & 1.875\\
+ & & & $\Sigma$ = 7.5
+\end{tabular}
+\end{center}
+a) Die Tabelle sieht dann wie folgt aus:
+\begin{center}
+\begin{tabular}{llll}
+\textbf{Op} & \textbf{Freq} & \textbf{$CPI_i$} & \textbf{Freq x $CPI_i$}\\
+\texttt{ALU} & 25\% & 5 & 1.25\\
+\texttt{LOAD} & 25\% & 6 & 1.5\\
+\texttt{STORE} & 25\% & 7.5 & 1.875\\
+\texttt{Branch} & 25\% & 7.5 & 1.875\\
+ & & & $\Sigma$ = 6.5
+\end{tabular}
+\end{center}
+Die CPU ist $13.3\%$ schneller. \\\\
+b)
+\begin{center}
+\begin{tabular}{llll}
+\textbf{Op} & \textbf{Freq} & \textbf{$CPI_i$} & \textbf{Freq x $CPI_i$}\\
+\texttt{ALU} & 25\% & 2.5 & 0.625 \\
+\texttt{LOAD} & 25\% & 6 & 2.5\\
+\texttt{STORE} & 25\% & 7.5 & 1.875\\
+\texttt{Branch} & 25\% & 7.5 & 1.875\\
+ & & & $\Sigma$ = 6.875
+\end{tabular}
+\end{center}
+Die CPU ist $8.3\%$ schneller. 
+
+\section{Stackverwendung bei Subroutinen}
+\begin{itemize}
+\item Beim Aufruf von Subroutinen wird Speicherplatz für die lokalen Variablen der Funktion reserviert (``stack frame'', damit verbunden der ``Frame Pointer''). \\
+\item Ein weiterer Verwendungszweck besteht darin, dass die Parameter auf dem Stack abgelegt und zwischengespeichert werden, damit sie von der Subroutine weiterverwendet werden können.
+\end{itemize}
+
+\section{ALU \& Most Significant Bit}
+Die ALU muss für das \textit{most significant bit} deshalb anders aufgebaut sein, damit \texttt{slt} unterstützt werden kann. Das \textit{msb} gibt als einziges Bit das \texttt{Less} weiter (an das \textit{lsb}). Zudem muss der Overflow abgefangen werden, weshalb diese Leitung nicht zum nächst höheren Bit führt (es gibt ja kein höherwertiges Bit).
+\newpage
+
+\section{ALU \& \texttt{SLT}}
+\begin{align}
+A\,slt\,B = \left \{ \begin{matrix} 0...01\text{ if } A < B & \text{ i.e. if } A-B < 0 \\ 0...00\text{ if } A \geq B & \text{ i.e. if } A-B \geq 0 \end{matrix} \right.
+\end{align}
+Beim \texttt{slt}-Befehl (\textit{set on less than}) wird beim ``Operation''-control der Schalter auf 3 gesetzt. Dies bewirkt, dass beim höchstwertigen Bit das set übertragen wird auf dass less beim tiefstwertigen Bit. Alle Bits ausser dem niederwertigsten haben bei \texttt{less} 0 als Input. \\
+Der Trick ist nun dass die Bedingung $A < B$ umformuliert werden kann zu $A-B < 0$. Bei dieser Operation kann einfach das höchstwertige Bit betrachtet werden, welches angibt, op $A-B$ negativ ist. Ist dies der Fall, muss $A < B$ gelten und das Bit wird übertragen.
+
+\section{Pop und push}
+\begin{itemize}
+\item \texttt{pop}: Der Wert wird geladen und z.B. in Register \texttt{\$r3} gespeichert. Danach wird zum (Stack-)Pointer 4 addiert, um ihn auf das nächste Element zeigen zu lassen.
+\begin{verbatim}
+pop:    lw      $r3, 0($sp)
+        addi    $sp, $sp, 4
+\end{verbatim}
+\item \texttt{push}: Hier ist das Gegenteil der Fall. Der Stackpointer wird um -4 verschoben, sodass dort das neue Element eingefügt werden kann.
+\begin{verbatim}
+push:   addi    $sp, $sp, -4
+        sw      $r3, 0($sp)
+\end{verbatim}
+\end{itemize}
+
+\section{\texttt{loadi}}
+Da wir eine 32 Bit Konstante speichern wollen, aber der Befehl insgesamt nur 32 Bit sein kann, muss die Instruktion aufgeteilt werden in zwei separate Befehle.
+Mit \texttt{lui} können die 16 oberen Bits gesetzt werden, und mit \texttt{ori} die Unteren.\\
+\textit{imm\_upper} sind die höherwertigen 16 Bits, \textit{imm\_lower} analog dazu die Niederwertigen.
+\begin{verbatim}
+        lui    $r3, imm_upper
+        ori    $r3, $r3, imm_lower
+\end{verbatim}
+
+\section{ALU: OPCodes}
+\begin{center}
+\begin{tabular}{|c|c|c|p{8cm}|}\hline
+\textbf{operation} & \textbf{\textit{opcode}} & \textbf{\textit{funct}} & \textbf{Erklärung}\\\hline
+\texttt{and} & 000 000 & 100 100 & Beim bitweisen and werden \textbf{Ainvert} und \textbf{Binvert} auf 0 gesetzt, und bei der Operation, also beim Multiplexer, wird das erste Resultat weiter verwertet. Vor dem Multiplexer führen die Daten durch ein and-Modul.
+\\\hline
+\texttt{or} & 000 000 & 100 101 & Die Bits hier sind gleich gesetzt wie beim and, ausser dass beim Multiplexer das zweite Resultat ausgewählt wird (das vorher durch ein OR-Modul geführt wurde).\\\hline
+\texttt{add} & 000 000 & 100 000 & Hier sind \textbf{Ainvert} und \textbf{Binvert} auf 0, und beim Multiplexer wird das dritte Resultat verwendet. Dieses Resultat stammt aus einem Halbaddierer.\\\hline
+\texttt{sub} & 000 000 & 100 010 & Gleich wie add, nur dass \textbf{Binvert} auf 1 gesetzt wurde.\\\hline
+\texttt{slt} & 000 000 & 101 010 & Gleich wie sub, nur dass bei Operation der Wert auf 3 gesetzt wird, so dass das Ergebnis von less als Resultat der ALU weiterverwertet wird.\\\hline
+\texttt{nor} & 000 000 & 100 111 & Gleich wie and, nur dass die beiden Schaltungen bei \textbf{Ainvert} und \textbf{Binvert}  auf 1 gesetzt wurden, d.h. es wird mit dem Komplement der beiden weitergerechnet.\\\hline
+\end{tabular}
+\end{center}
+
+
+\end{document}

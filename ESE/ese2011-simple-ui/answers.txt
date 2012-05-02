@@ -1,0 +1,9 @@
+1. Explain how a typical HTTP request is processed with the framework (the request lifecycle).
+
+First, if a user wants to open a website on a port 'play!' is listening (e.g. localhost:9000), a HTTP-request is sent to the framework (a HTTP-server from 'play!' is listening on that specific server). 
+The request is then 'routed', depending which subsite is being called (e.g. 'GET /hans' --> search for a entry called 'hans' and follow the specified route), with help of the app/'routes'-file.
+The code which has been written by the programmer (us) is executed and a HTML-file is the result, which is then delivered back to as a HTTP-response to the requester.
+
+2. How could you test user interfaces with the testing facilities in play! framework?
+
+Besides of testing the application with the already well-known testing framework JUnit 4, 'play!' is equipped with 'Selenium', an automated browser, especially for testing the user interface. With the #{selenium /}-tag, we can call specified pages (e.g. open('/hans')), 'type in' certain data or click (e.g. 'type('hans', '12345')', clickAndWait('log in')) and make assertions about that given site such as 'assertTextPresent('Login successful')'.

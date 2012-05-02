@@ -1,0 +1,15 @@
+# P2 Übungen, GUI construction
+
+ACME Inc. is more than pleased with your performance. You've implemented the most lovely game, and it sells well. Clients are paying a monthly fee to play it via telnet on the company server. Splendid.
+
+However, marketing research shows that consumers are more likely to spend money on products that are "graphical." Your boss explains that he wants Ursuppe to be a graphical application henceforth. Your boss is really a designer by profession, so he explains that good user experiences are created by iterative refinement of cheap sketches. You're asked to:
+
+ - Sketch up the user interface with a pencil in 5 different ways. They may be close to each other, but make sure to have at least 2 radically different designs included.
+ - Take a snapshots of all 5 sketches using your mobile phone and add them to the repository. Then, choose your favorite design, and explain in a sentence, why you chose it.
+ - Make a paper prototype. Simulate the user experience on paper by simulating the usage of your user interface by making distinct sketches for several steps of interacting with the program. Take mobile camera snapshots and post them.
+
+Your boss explains that after prototyping comes the time for implementation. Implement your design using Java Swing, so that the Ursuppe game can be played graphically.
+
+**Note**: Your boss seems to be somewhat dim-witted. You figure that he wouldn't notice if you still displayed the same game board, in ASCII graphics, in a large panel across the screen. Seriously, your boss has no standards, so long as you've gone thru the design process.
+
+

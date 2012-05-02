@@ -1,0 +1,1 @@
+markdown2pdf --custom-header=head.sty problemset 9.mdown --output=P09.pdf

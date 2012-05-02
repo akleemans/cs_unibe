@@ -1,0 +1,527 @@
+ /**
+* JJTree file
+*/
+
+options {
+  JDK_VERSION = "1.5";
+  LOOKAHEAD=2;
+  STATIC=false;
+
+  MULTI=true;
+  NODE_USES_PARSER=true;
+}
+
+PARSER_BEGIN(CScriptParser)
+package cdtl.csi;
+
+import java.util.Hashtable;
+import java.util.Random;
+
+@SuppressWarnings({"all"})
+public class CScriptParser implements cdtl.CharacterInterpretedInputStream.CharacterScriptParser {
+	/* Members */
+	private Hashtable<String, Object> dictionary=new Hashtable<String, Object>();
+
+	private int level=0;
+	private int skipLevel=Integer.MAX_VALUE;
+
+	private Random rgen=new Random();
+
+	/* Accessors */
+	public Object getFromDictionary(String key) {
+		return dictionary.get(key);
+	}
+
+	public Object putInDictionary(String key, Object value) {
+		return dictionary.put(key, value);
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void incrementLevel(int delta) {
+		level+=delta;
+	}
+
+	public void decrementLevel(int delta) {
+		level-=delta;
+	}
+
+	public int getSkipLevel() {
+		return skipLevel;
+	}
+
+	public void setSkipping(boolean s) {
+		skipLevel=s?level:Integer.MAX_VALUE;
+	}
+
+	public void startSkipping() {
+		skipLevel=level;
+	}
+
+	public void stopSkipping() {
+		skipLevel=Integer.MAX_VALUE;
+	}
+
+	public boolean isExecutable() {
+		return level<skipLevel;
+	}
+
+	public Random getRandomGenerator() {
+		return rgen;
+	}
+
+	/* ParseScript method */
+	public cdtl.CharacterInterpretedInputStream.CharacterScript parseScript(String script) throws cdtl.InterpreterParseException {
+		/* Reinitializing input stream (keeps current state) */
+		int state=token_source.curLexState;
+		ReInit(new java.io.StringReader(script));
+		token_source.curLexState=state;
+
+		/* Parsing */
+		try{
+			return Root();
+		}
+		catch(ParseException ex) {
+			throw new cdtl.InterpreterParseException(ex.getMessage(), script);
+		}
+	}
+
+	/* Testing case entry point */
+	public static void main(String args[]) {
+		System.out.println("Reading from standard input...");
+		System.out.print("Enter an expression like \"1+(2+3)*var;\" :");
+		CScriptParser parser= new CScriptParser(System.in);
+		try {
+  			SimpleNode n = parser.Root();
+ 			n.dump("");
+			System.out.println("Thank you.");
+		}
+		catch (ParseException e) {
+			System.out.println("Oops.");
+ 			System.out.println(e.getMessage());
+    	}
+	}
+}
+PARSER_END(CScriptParser)
+
+TOKEN_MGR_DECLS : {
+	java.util.Vector<Integer> stateStack=new java.util.Vector<Integer>();
+}
+
+<*> SKIP :
+{
+	" " |
+	"\t" |
+	"\n" |
+	"\r"
+}
+
+/* PUNCTUATION */
+<*> TOKEN : {<COMA: ","> }
+<*> TOKEN : {<SEMICOLON: ";"> }
+<*> TOKEN : {<PAR_OPEN: "("> }
+<*> TOKEN : {<PAR_CLOSE: ")"> }
+<*> TOKEN : {<BRACKET_OPEN: "["> }
+<*> TOKEN : {<BRACKET_CLOSE: "]"> }
+
+/* OPERATORS */
+<*> TOKEN : {<EQUAL: "="> }
+
+<*> TOKEN : {<AND: "&&"> }
+<*> TOKEN : {<OR: "||"> }
+<*> TOKEN : {<XOR: "^^"> }
+<*> TOKEN : {<NOT: "!"> }
+<*> TOKEN : {<EQUALITY: "=="> }
+<*> TOKEN : {<UNEQUALITY: "!="> }
+<*> TOKEN : {<LESSER: "<"> }
+<*> TOKEN : {<LESSEREQ: "<="> }
+<*> TOKEN : {<GREATER: ">"> }
+<*> TOKEN : {<GREATEREQ: ">="> }
+
+<*> TOKEN : {<PLUS: "+"> }
+<*> TOKEN : {<MINUS: "-"> }
+<*> TOKEN : {<MULTIPLY: "*"> }
+<*> TOKEN : {<DIVIDE: "/"> }
+<*> TOKEN : {<QUOTIENT: "DIV"> }
+<*> TOKEN : {<REMAINDER: "MOD"> }
+
+/* STATEMENTS */
+<*> TOKEN : {<IF: "IF"> }
+<*> TOKEN : {<THEN: "THEN" > {stateStack.add(curLexState);}: IF_THENSTATE}
+<IF_THENSTATE> TOKEN : {<ELSE: "ELSE">: IF_ELSESTATE }
+<IF_THENSTATE, IF_ELSESTATE> TOKEN : {<ENDIF: "ENDIF"> {SwitchTo(stateStack.remove(stateStack.size()-1));}}
+
+<*> TOKEN : {<FOR: "FOR"> {stateStack.add(curLexState);}: FOR_STATE}
+<FOR_STATE> TOKEN : {<ENDFOR: "ENDFOR" > {SwitchTo(stateStack.remove(stateStack.size()-1));}}
+
+<*> TOKEN : /* LITERALS */
+{
+	<INTEGER_LITERAL: <DECIMAL_LITERAL> > |
+	<DOUBLE_LITERAL: <DECIMAL_LITERAL> "." (<DIGIT>)* | "." (<DIGIT>)+ > |
+	<BOOLEAN_LITERAL: "TRUE" | "FALSE" > |
+	<TEXT_LITERAL: "\"" (~["\""])* "\"" > |
+	<RANDOM_LITERAL: "RND" > |
+
+	<#DECIMAL_LITERAL: ["1"-"9"] (<DIGIT>)* | "0"  > |
+	<#DIGIT: ["0"-"9"] >
+}
+
+<*> TOKEN : /* IDENTIFIERS */
+{
+	<IDENTIFIER: <LETTER> (<LETTER>|<DIGIT>)* > |
+
+	<#LETTER: ["_","a"-"z","A"-"Z"] >
+}
+
+void Identifier(): {Token t;}
+{
+	t=<IDENTIFIER>
+	{jjtThis.setToken(t.kind, t.image);}
+}
+
+void Integer(): {Token t;}
+{
+	t=<INTEGER_LITERAL>
+	{jjtThis.setToken(t.kind, t.image);}
+}
+
+void Double(): {Token t;}
+{
+	t=<DOUBLE_LITERAL>
+	{jjtThis.setToken(t.kind, t.image);}
+}
+
+void Boolean(): {Token t;}
+{
+	t=<BOOLEAN_LITERAL>
+	{jjtThis.setToken(t.kind, t.image);}
+}
+
+void String(): {Token t;}
+{
+	t=<TEXT_LITERAL>
+	{jjtThis.setToken(t.kind, t.image);}
+}
+
+void Random(): {}
+{
+	<RANDOM_LITERAL>
+}
+
+void RandomRange(): {}
+{
+	(
+		<BRACKET_OPEN>
+		{((ASTRandomRange)jjtThis).setBeginIncluded(true);}
+		|
+		<BRACKET_CLOSE>
+		{((ASTRandomRange)jjtThis).setBeginIncluded(false);}
+	)
+	EvaluableExpression()
+	<COMA>
+	EvaluableExpression()
+	(
+		<BRACKET_CLOSE>
+		{((ASTRandomRange)jjtThis).setEndIncluded(true);}
+		|
+		<BRACKET_OPEN>
+		{((ASTRandomRange)jjtThis).setEndIncluded(false);}
+	)
+}
+
+SimpleNode Root(): {}
+{
+	RootBlock()
+	<EOF>
+	{ return jjtThis; }
+}
+
+void RootBlock() #Block(): {}
+{
+	(
+		Controls()
+		|
+		ControlStatement()
+		|
+		Instruction()
+		<SEMICOLON>
+	)+
+}
+
+void InstructionBlock() #Block(): {}
+{
+	(
+		ControlStatement()
+		|
+		Instruction()
+		<SEMICOLON>
+	)+
+}
+
+void ControlStatement() #_ControlStatement(false): {}
+{
+	IfStatement()
+	|
+	ForStatement()
+}
+
+void Controls() #_Controls(false): {}
+{
+	IfElseControl()
+	|
+	IfEndControl()
+	|
+	ForEndControl()
+}
+
+void IfStatement() #IfStatement(): {}
+{
+	<IF>
+	EvaluableExpression()
+	<THEN>
+	(
+		<EOF>
+		{((ASTIfStatement)jjtThis).setCompleted(false);}
+		|
+		InstructionBlock()
+		(
+			(
+				<EOF>
+				{((ASTIfStatement)jjtThis).setCompleted(false);}
+				|
+				<ENDIF>
+				{((ASTIfStatement)jjtThis).setCompleted(true);}
+			)
+			|
+			<ELSE>
+			(
+				<EOF>
+				{((ASTIfStatement)jjtThis).setCompleted(false);}
+				|
+				InstructionBlock()
+				(
+					<EOF>
+					{((ASTIfStatement)jjtThis).setCompleted(false);}
+					|
+					<ENDIF>
+					{((ASTIfStatement)jjtThis).setCompleted(true);}
+				)
+			)
+		)
+	)
+}
+
+void IfElseControl() #IfElseControl(): {}
+{
+	<ELSE>
+	(
+		<EOF>
+		{((ASTIfElseControl)jjtThis).setCompleted(false);}
+		|
+		InstructionBlock()
+		(
+			<EOF>
+			{((ASTIfElseControl)jjtThis).setCompleted(false);}
+			|
+			<ENDIF>
+			{((ASTIfElseControl)jjtThis).setCompleted(true);}
+		)
+	)
+}
+
+void IfEndControl() #IfEndControl(): {}
+{
+	<ENDIF>
+}
+
+void ForStatement() #ForStatement(): {}
+{
+	<FOR>
+	<PAR_OPEN>
+	Instruction()
+	<SEMICOLON>
+	EvaluableExpression()
+	<SEMICOLON>
+	Instruction()
+	<PAR_CLOSE>
+	(
+		<EOF>
+		{((ASTForStatement)jjtThis).setCompleted(false);}
+		|
+		InstructionBlock()
+		(
+			<EOF>
+			{((ASTForStatement)jjtThis).setCompleted(false);}
+			|
+			<ENDFOR>
+			{((ASTForStatement)jjtThis).setCompleted(true);}
+		)
+	)
+}
+
+void ForEndControl() #ForEndControl(): {}
+{
+	<ENDFOR>
+}
+
+void Instruction() #_Instruction(false): {}
+{
+	EvaluableExpression()
+	#EvaluationInstruction(1)
+	|
+	PrintInstruction()
+}
+
+void PrintInstruction() #PrintInstruction(): {}
+{
+	<EQUAL>
+	EvaluableExpression()
+}
+
+void EvaluableExpression() #_EvaluableExpression(false):{Token t;}
+{
+	Identifier()
+	<EQUAL>
+	EvaluableExpression()
+	#AssignementExpression(2)
+	|
+	Level1()
+}
+
+void Level1() #_Level1(false):{} //BooleanExpression
+{
+	Level2()
+	(
+		<AND>
+		Level1()
+		#BooleanAnd(2)
+	|
+		<OR>
+		Level1()
+		#BooleanOr(2)
+	)*
+}
+
+void Level2() #_Level2(false):{} //BooleanTerm
+{
+	Level3()
+	(
+		<XOR>
+  	 	Level2()
+  	 	#BooleanXor(2)
+	)*
+}
+
+void Level3() #_Level3(false):{} //BooleanFactor
+{
+	Level4()
+	|
+		<NOT>
+		Level3()
+		#BooleanNot(1)
+}
+
+void Level4() #_Level4(false):{} //BooleanUnit
+{
+	Level5()
+	(
+		<EQUALITY>
+		Level4()
+		#BooleanEquality(2)
+	|
+		<UNEQUALITY>
+		Level4()
+		#BooleanUnequality(2)
+	)*
+}
+
+void Level5() #_Level5(false):{} //BooleanPrimary
+{
+	Level6()
+	(
+		<LESSER>
+		Level6()
+		#BooleanLesser(2)
+	|
+		<LESSEREQ>
+		Level6()
+		#BooleanLesserEq(2)
+	|
+		<GREATER>
+		Level6()
+		#BooleanGreater(2)
+	|
+		<GREATEREQ>
+		Level6()
+		#BooleanGreaterEq(2)
+	)*
+}
+
+void Level6() #_Level6(false):{} //MathExpression
+{
+	Level7()
+	(
+		<PLUS>
+		Level6()
+		#MathAdd(2)
+	|
+		<MINUS>
+		Level6()
+		#MathSub(2)
+	)*
+}
+
+void Level7() #_Level7(false):{} //MathTerm
+{
+	Level8()
+	(
+		<MULTIPLY>
+  	 	Level7()
+  	 	#MathMul(2)
+  	|
+  		<DIVIDE>
+  	 	Level7()
+  	 	#MathDiv(2)
+  	 |
+  		<QUOTIENT>
+  	 	Level7()
+  	 	#MathQuotient(2)
+  	|
+  		<REMAINDER>
+  	 	Level7()
+  	 	#MathRemainder(2)
+	)*
+}
+
+void Level8() #_Level8(false):{} // MathFactor
+{
+	Primary()
+	|
+	<MINUS>
+	Level8()
+	#MathNegate(1)
+	|
+	<PAR_OPEN>
+	EvaluableExpression()
+	<PAR_CLOSE>
+}
+
+void Primary() #_Primary(false): {Token t;}
+{
+	Identifier()
+	|
+	Integer()
+	|
+	Double()
+	|
+	Boolean()
+	|
+	String()
+	|
+	Random()
+	|
+	RandomRange()
+}
+

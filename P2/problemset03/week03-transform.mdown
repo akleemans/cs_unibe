@@ -1,0 +1,28 @@
+# Design by Contract, Week 3 #
+
+This week, you'll implement a small graphical utensil that will let the user try out simple affine transformations on images.
+
+A Transform object knows how to parse strings that describe affine transformations and maintains the resulting affine transformation. The The ShowImage class knows a Transform. It accepts scripts from the user, and shows an image after the affine transformation the user supplied was applied to the image. The image must stay at all times entirely visible within the component. (You may assume that no resizing takes place.) 
+
+## UML class diagrams ##
+1. Draw up the image transformation application classes as a UML class diagram. 
+2. List the responsibilities of the objects. No more than one or two sentences per class.
+3. Define the contracts between the objects. Use a table just as on Oscar's slides.
+
+*Note:* we will accept hand-drawn UML diagrams only! Use the camera of your mobile phone to take a picture of the diagram and push the file on your git account.
+
+## Design by contract (part 1) ##
+1. Read "Applying 'Design by contact'" by Bertrand Meyer. It's in the "papers" folder at the root of the repository.
+2. Make sure that you're using Java 1.5 or higher and that assertions are turned on.
+3. Implement the missing parts in Transform. The grammar for the transformations should be clear from the tests in TransformTest.
+4. Insert pre- and post-conditions into Transform.
+5. Write the `#invariant` method for the Transform class and use it in post-condition assertions.
+
+
+## Design by contract (part 2) ##
+1. Implement the missing parts in `ShowImage`.
+2. Insert pre- and post-conditions into `ShowImage`, according to the contract you chose.
+3. Write a method `#invariant` defining the invariant of  `ShowImage`.
+4. Add test methods that verify that your implementation reacts properly when illegal strings are entered.
+5. Add test methods that verify proper reaction when transformations are entered that would move the image outside of the component.
+

@@ -1,0 +1,45 @@
+Output of RadixMiniTest.out
+
+Test Parameters:
+private static void tinyTest() {
+	char[][] testData = generateTestData(10, 5);
+	RadixSort.radixSortImproved(testData, 5);
+}	
+===========================
+
+Input:
+0**: munox
+1**: l
+2**: xris
+3**: cvkam
+4**: or
+5**: fzc
+6**: mn
+7**: ljhi
+8**: fq
+9**: eod
+
+Sorted for length:
+0*: munox
+1*: cvkam
+2*: xris
+3*: ljhi
+4*: fzc
+5*: eod
+6*: or
+7*: mn
+8*: fq
+9*: l
+
+Output:
+0: cvkam
+1: eod
+2: fzc
+3: fq
+4: l
+5: ljhi
+6: munox
+7: mn
+8: or
+9: xris
+

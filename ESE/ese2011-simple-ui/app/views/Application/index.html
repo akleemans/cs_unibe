@@ -1,0 +1,20 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<h1>Hello ${applicationUserName ?: 'guest'}!</h1>
+
+<h3>Your Calendar(s):</h3>
+
+#{list items:calendars, as:'calendar'}
+	<p><a href=@{Application.showEvents(applicationUserName, applicationUserName, calendar.name)}>${calendar.name}</a></p>
+#{/list}
+
+<h3>Other Users:</h3>
+
+#{list items:otherUsers, as:'otherUser'}
+	<p><a href=@{Application.showCalendars(applicationUserName, otherUser.name)}>${otherUser.name}</a></p>
+#{/list}
+
+<p><a href="javascript:history.back()">Back</a></p>
+
+<a href="/logout">log out</a>

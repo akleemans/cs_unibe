@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" media="screen" href="b.css">
+                <link rel="shortcut icon" type="image/png" href="/public/images/favicon.png">
+        <script src="/public/javascripts/jquery-1.5.2.min.js" type="text/javascript" charset="utf-8"></script>
+
+            </head>
+    <body>
+        <header>
+	<h1>simplay's Calendar: simplay's first calendar: <a href="cal.html#"><img src="star.png" border=0></a></h1>
+	
+	<p> Month: Oktober 2011 </p>
+</header>
+
+<body>
+
+	<div id="nextMonth">
+
+		<a href="/showTest?username=simplay&calendarId=1&calendarName=simplay%27s+first+calendar&s_date=23%2F11%2F2011%2C+12%3A00"> next </a>
+	</div>
+	
+	<div id="prevousMonth">
+		<a href="/showTest?username=simplay&calendarId=1&calendarName=simplay%27s+first+calendar&s_date=23%2F9%2F2011%2C+12%3A00"> previous </a>
+	</div>
+	
+	<table id="calendar">
+		<tr>
+
+			<td class="title"> Mo </td>
+			<td class="title"> Di </td>
+			<td class="title"> Mi </td>	
+			<td class="title"> Do </td>	
+			<td class="title"> Fr </td>	
+			<td class="title"> Sa </td>	
+			<td class="title"> So </td>	
+		</tr>
+
+		
+		<tr>
+<td class="entry"> - </td>
+<td class="entry"> - </td>
+<td class="entry"> - </td>
+<td class="entry"> - </td>
+<td class="entry"> - </td>
+
+<td class="entry"> 
+1</td>
+<td class="entry"> 
+2</td>
+</tr>
+<tr>
+<td class="entry"> 
+3</td>
+<td class="entry"> 
+4</td>
+<td class="entry"> 
+5</td>
+
+<td class="entry"> 
+6</td>
+<td class="entry"> 
+7</td>
+<td class="entry"> 
+8</td>
+<td class="entry"> 
+9</td>
+</tr>
+<tr>
+<td class="entry"> 
+10</td>
+
+<td class="entry"> 
+11</td>
+<td class="entry"> 
+12</td>
+<td class="entry"> 
+13</td>
+<td class="entry"> 
+14</td>
+<td class="entry"> 
+15</td>
+<td class="entry"> 
+16</td>
+
+</tr>
+<tr>
+<td class="entry"> 
+17</td>
+<td class="entry"> 
+18</td>
+<td class="entry"> 
+19</td>
+<td class="entry"> 
+20</td>
+<td class="entry"> 
+21</td>
+
+<td class="today"> 
+ 
+								<a href="/showTest?mmonth=10&yyear=2011&username=simplay&calendarId=1&dday=22&calendarName=simplay%27s+first+calendar&s_date=22%2F10%2F2011%2C+11%3A59%29%29%7D%29%7D)}"> 22</a>
+							<td class="entry"> 
+23</td>
+</tr>
+<tr>
+<td class="entry"> 
+24</td>
+<td class="entry"> 
+25</td>
+<td class="entry"> 
+
+26</td>
+<td class="entry"> 
+27</td>
+<td class="entry"> 
+28</td>
+<td class="entry"> 
+29</td>
+<td class="entry"> 
+30</td>
+</tr>
+<tr>
+<td class="entry"> 
+
+31</td>
+<td class="entry"> - </td>
+<td class="entry"> - </td>
+<td class="entry"> - </td>
+<td class="entry"> - </td>
+<td class="entry"> - </td>
+
+<td class="entry"> - </td>
+</tr>
+</table>
+
+<form name="calendarform" action="input_checkbox.htm">
+<input type="checkbox" name="ben" id="ben" onclick="changeSelection(this)" checked="checked"> Ben<br>
+</form>
+
+<div style="clear:both"></div>
+
+
+
+	<table id="events">
+			</table>
+	
+	<div id="Nav">
+		 
+ 			<a href="/addEvent?mmonth=0&calendarID=1&yyear=0&dday=0&name=simplay&s_date=22%2F10%2F2011%2C+11%3A59%29%29%7D%29%7D"> New Event</a>  <br>
+
+			</div>
+<script type="text/javascript">
+function changeSelection(boxName) {
+	var x = document.forms.calendarform;
+	x[0].checked=true;
+
+	if(boxName.checked = true) {
+		document.location.href="cal.html?q="+boxName.name;
+	}
+} 
+</script>
+</body>	
+
+<a href="/calendars?username=simplay&s_date=22%2F10%2F2011%2C+11%3A59%29%29%7D%29%7D">Back</a>
+<a href="/">Home</a>
+<a href="/secure/logout">Log out</a>    </body>
+</html>

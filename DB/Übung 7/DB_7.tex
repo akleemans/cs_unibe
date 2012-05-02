@@ -1,0 +1,221 @@
+\documentclass[a4paper,10pt,headlines=3.2]{scrartcl}
+\usepackage{graphicx}           %Bilder
+
+%\usepackage[T1]{fontenc}        %Umlaute
+%\usepackage[latin1]{inputenc}   %Windows
+%\usepackage[utf8x]{inputenc}	%Linux
+\usepackage{ucs}
+
+\usepackage[ngerman]{babel}     %Deutsche Sprache
+\usepackage{amsmath}            %Math. Zeichen
+\usepackage{pifont}             %Skalierbare Schriftart
+\usepackage{array}
+\usepackage{epsfig}             %Erweiterte Grafiken
+\usepackage{makeidx}            %Stichwortverzeichnis
+\usepackage[pdftex]{color} 
+
+\newcommand{\changefont}[3]{
+\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
+
+\makeindex
+
+\usepackage[automark]{scrpage2}
+\usepackage[nosectionbib]{apacite}               %Zitieren
+
+%\usepackage[colorlinks]{hyperref}%Hyperlinks
+
+\usepackage{lmodern}
+\usepackage{scrpage2}           %KOMA-Script
+\usepackage{tipa}
+\usepackage{qtree}
+\usepackage{wasysym}
+
+\usepackage{remreset}			%Fussnoten global
+\makeatletter
+\@removefromreset{footnote}{chapter}
+\makeatother 
+
+\setcounter{tocdepth}{3}
+
+%Kopfzeilen
+\pagestyle{scrheadings}         %Seitenstil scrheadings verwenden
+
+%\setlength{\textheight}{24cm}
+%\setlength{\textwidth}{16cm}
+%\setlength{\topmargin}{-2cm}
+%\setlength{\oddsidemargin}{0cm}
+
+% Groesse des Textbereiches in der Seite
+\setlength{\textwidth}{16cm}
+\setlength{\textheight}{22cm}
+% Kopf- und Fusszeile, Hoehe und Abstand vom Text
+\setlength{\headheight}{15pt}
+\setlength{\headsep}{0.8cm}
+% Linker Seiteneinzug
+\setlength{\oddsidemargin}{2.5cm} \addtolength{\oddsidemargin}{-1in}
+\setlength{\evensidemargin}{2.5cm} \addtolength{\evensidemargin}{-1in}
+% Andere Groessen ausrechnen (vertikal zentrieren)
+\setlength{\footskip}{\headsep}
+\addtolength{\footskip}{\headheight}
+\setlength{\topmargin}{\paperheight}
+\addtolength{\topmargin}{-\textheight}
+\addtolength{\topmargin}{-\headheight}
+\addtolength{\topmargin}{-\headsep}
+\addtolength{\topmargin}{-\footskip}
+\addtolength{\topmargin}{-2in}
+\addtolength{\topmargin}{-0.5\topmargin}
+
+%Abstand zurücksetzen
+\setlength{\headheight}{20pt}
+
+\usepackage{listings} 
+\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt} \lstset{language=Java} 
+\changefont{cmss}{m}{n}
+
+\clearscrheadfoot
+%\renewcommand{\headheight}{40pt} 
+\ihead[]{Datenbanken \\Frühlingssemester 2011 \\Institut für angewandte
+Mathematik} % - linke Kopfzeile 
+\ohead[asdasd]{Übung 7, Abgabe 12. April 2011 \\Adrianus Kleemans
+[07-111-693]\\Pinar Kayalar [10-123-453]} % - linke Kopfzeile 
+\setheadsepline{.4pt} %Separate Linie im Kopf
+\cfoot[\pagemark]{\pagemark} %- mittlere Fusszeile
+
+\begin{document}
+\section*{Aufgabe 1}
+\begin{itemize}
+ \item Geben Sie eine Liste aller Autoren aus.
+\begin{verbatim}
+SELECT au_lname, au_fname, phone, address, city, state, country, postalcode 
+FROM authors
+\end{verbatim}
+ \item Geben Sie eine Liste aller Titel aus.
+\begin{verbatim}
+SELECT title, type, price, advance, total_sales, notes, pubdate, contract
+FROM titles
+\end{verbatim}
+ \item Gibt es Autoren, die in San Francisco wohnen? Welche?
+\begin{verbatim}
+SELECT au_lname, au_fname, phone, address, city, state, country, postalcode 
+FROM authors
+WHERE city = "San Francisco"
+\end{verbatim}
+ \item Wieviele Titel sind gespeichert?
+\begin{verbatim}
+SELECT count(title) as AnzahlTitel
+FROM titles
+\end{verbatim}
+ \item Wieviele Autoren sind gespeichert?
+\begin{verbatim}
+SELECT count(au_id) as AnzahlAutoren
+FROM authors
+\end{verbatim}
+ \item Geben Sie eine Liste aller Titel die mit 'S' beginnen aus.
+\begin{verbatim}
+SELECT title, type, price, advance, total_sales, notes, pubdate, contract
+FROM titles
+WHERE title LIKE 'S%'
+\end{verbatim}
+ \item Bestimmen Sie den durchschnittlichen Preis eines Titels.
+\begin{verbatim}
+SELECT avg(price) as DurchschnPreis
+FROM titles
+\end{verbatim}
+ \item Geben Sie das Datum aller Verkäufe des Ladens 'Bookbeat' an.
+\begin{verbatim}
+SELECT date
+FROM stores, sales
+WHERE sales.stor_id = stores.stor_id AND stor_name = 'Bookbeat'
+\end{verbatim}
+ \item Geben Sie alle Titel aus, die im Laden 'Bookbeat' verkauft wurden.
+\begin{verbatim}
+SELECT title, type, price, advance, total_sales, notes, pubdate, contract
+FROM stores, sales, salesdetail, titles
+WHERE sales.stor_id = stores.stor_id AND sales.ord_num = salesdetail.ord_num 
+      AND salesdetail.title_id = titles.title_id AND stor_name = 'Bookbeat'
+\end{verbatim}
+ \item Geben Sie den Discounttype jedes Ladens, inklusive Namen und Ort des Ladens an.
+\begin{verbatim}
+SELECT discounttype, stor_name, stor_adress, city, state, country, postalcode
+FROM stores, discounts
+WHERE stores.stor_id = discounts.stor_id
+\end{verbatim}
+\end{itemize}
+
+\section*{Aufgabe 2}
+\begin{itemize}
+ \item Die angegebene Anfrage hat auf einer MySQL-Umgebung funktioniert und gültige Resultate zurückgegeben. Die
+Aufgabe könnte auf einem Namenskonflikt beruhen.
+ \item Korrigierter Ausdruck:
+\begin{verbatim}
+SELECT title, price
+FROM titles
+WHERE price >= ALL (	SELECT price AS p 
+			FROM titles)
+\end{verbatim}
+ \item Alle Bücher, welche teuerer als das billigste Psychologie-Buch sind:
+\begin{verbatim}
+SELECT title, price
+FROM titles
+WHERE price >= SOME (	SELECT price AS p
+			FROM titles
+			WHERE type = 'Psychology')
+\end{verbatim}
+ \item Autoren in einem Staat ohne Store:
+\begin{verbatim}
+SELECT title, price
+FROM authors
+WHERE NOT EXISTS (	SELECT city
+			FROM stores
+			WHERE stores.city = authors.city)
+\end{verbatim}
+\end{itemize}
+
+\section*{Aufgabe 3}
+\begin{itemize}
+ \item Bücher, nach Preis sortiert:
+\begin{verbatim}
+SELECT title, type, price, advance, total_sales, notes, pubdate, contract
+FROM titles
+ORDER BY price DESC
+\end{verbatim}
+ \item Autoren, nach Statt, Stadt und Name sortiert.
+\begin{verbatim}
+SELECT au_lname, au_fname, phone, address, city, state, country, postalcode 
+FROM authors
+ORDER BY state DESC, city ASC, au_lname ASC 
+\end{verbatim}
+
+ \item Bücherarten, zusammen mit Anzahl Büchern:
+\begin{verbatim}
+SELECT type, count(title)
+FROM titles
+GROUP BY type
+\end{verbatim}
+ \item Anzahl Autoren pro Staat:
+\begin{verbatim}
+SELECT state, count(au_id)
+FROM authors
+GROUP BY state
+ORDER BY count(au_id)
+\end{verbatim}
+
+ \item Bücherarten mit mehr als 2 verschiedene Bücher:
+\begin{verbatim}
+SELECT type, count(title)
+FROM titles
+GROUP BY type
+HAVING count(title) > 2
+\end{verbatim}
+ \item Alle Publisher, welche weniger Bücher herausgegeben haben als der Durchschnitt.
+\begin{verbatim}
+SELECT pub_name, count(titles.pub_id)
+FROM publishers, titles
+WHERE titles.pub_id = publishers.pub_id
+GROUP BY pub_name
+HAVING count(titles.pub_id) < avg(count(titles.pub_id))
+\end{verbatim}
+\end{itemize}
+
+
+\end{document}

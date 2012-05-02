@@ -1,0 +1,110 @@
+Evaluation for 'A¬BCvBC¬BvA¬AB¬C' begins...
+3 disjunct elements found.
+ - checking on 'A¬BC'
+First valid solution found:
+A = true
+B = false
+C = true
+Satisfiable: true
+
+Evaluation for 'AAAAAAA¬A' begins...
+1 disjunct elements found.
+ - checking on 'AAAAAAA¬A'
+Satisfiable: false
+
+Evaluation for 'AvBvCvDvEvFvGvHvIvJvKvLvMvN' begins...
+14 disjunct elements found.
+ - checking on 'A'
+First valid solution found:
+A = true
+Satisfiable: true
+
+Evaluation for '' begins...
+1 disjunct elements found.
+ - checking on ''
+First valid solution found:
+Satisfiable: true
+
+Evaluation for 'A¬AvB¬BvC¬CvD¬DvE¬EvF¬FvG¬G' begins...
+7 disjunct elements found.
+ - checking on 'A¬A'
+ - checking on 'B¬B'
+ - checking on 'C¬C'
+ - checking on 'D¬D'
+ - checking on 'E¬E'
+ - checking on 'F¬F'
+ - checking on 'G¬G'
+Satisfiable: false
+
+Evaluation for 'A¬AvB¬BvC¬CvD¬DvE¬EvF¬FvG¬H' begins...
+7 disjunct elements found.
+ - checking on 'A¬A'
+ - checking on 'B¬B'
+ - checking on 'C¬C'
+ - checking on 'D¬D'
+ - checking on 'E¬E'
+ - checking on 'F¬F'
+ - checking on 'G¬H'
+First valid solution found:
+G = true
+H = false
+Satisfiable: true
+
+Evaluation for 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' begins...
+1 disjunct elements found.
+ - checking on 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+First valid solution found:
+A = true
+B = true
+C = true
+D = true
+E = true
+F = true
+G = true
+H = true
+I = true
+J = true
+K = true
+L = true
+M = true
+N = true
+O = true
+P = true
+Q = true
+R = true
+S = true
+T = true
+U = true
+V = true
+W = true
+X = true
+Y = true
+Z = true
+Satisfiable: true
+
+Evaluation for '¬A¬B¬C¬D¬E¬F¬G¬H¬I¬J¬K¬L¬M' begins...
+1 disjunct elements found.
+ - checking on '¬A¬B¬C¬D¬E¬F¬G¬H¬I¬J¬K¬L¬M'
+First valid solution found:
+A = false
+B = false
+C = false
+D = false
+E = false
+F = false
+G = false
+H = false
+I = false
+J = false
+K = false
+L = false
+M = false
+Satisfiable: true
+
+Evaluation for '¬A¬A¬AAvBBB¬B¬B¬BBB' begins...
+2 disjunct elements found.
+ - checking on '¬A¬A¬AA'
+ - checking on 'BBB¬B¬B¬BBB'
+Satisfiable: false
+
+

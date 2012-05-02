@@ -1,0 +1,53 @@
+*{ You can use plain selenium command using the selenium tag }*
+
+#{selenium 'Check the login page with just a user as login'}
+    // Open the home page, and check that no error occured
+    
+    clearSession()
+    open('/')
+    waitForPageToLoad(1000)
+    assertNotTitle('Application error')
+    assertTitle('Login')
+	assertTextPresent('Remember me')
+	 
+	// no user for login
+	clickAndWait('css=input[type=submit]')
+	assertTextPresent('Oops, unknown username or password.')
+	
+	//input: a user but no password
+	type('username', 'simplay')
+	clickAndWait('css=input[type=submit]')
+	assertTextPresent('Oops, unknown username or password.')
+	
+#{/selenium}
+
+#{selenium 'Check the login page with user and password and the log out button'}
+
+	clearSession()
+    open('/')
+    waitForPageToLoad(1000)
+	//right login
+	type('username', 'simplay')
+	type('password', '123')
+	clickAndWait('css=input[type=submit]')
+	waitForPageToLoad(1000)
+	assertTitle('Home')
+	assertTextPresent('Home')
+	assertTextPresent('Your calendars')
+	assertTextPresent('Your account')
+	assertTextPresent('Followed calendars')
+	clickAndWait('link=Log out')
+	assertTextPresent('You have been logged out.')
+	clickAndWait('css=input[type=submit]')
+	assertTextPresent('Oops, unknown username or password.')
+	
+
+#{/selenium}
+	
+
+
+
+
+
+	
+	

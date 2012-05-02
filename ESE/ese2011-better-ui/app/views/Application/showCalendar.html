@@ -1,0 +1,121 @@
+#{extends 'calendar.html' /}
+#{set title:'Home' /}
+
+
+<body>
+<div id="wrapper">
+    <!-- <div id="leftCol"></div> -->
+    <div id="centerCol">
+     
+	<h1>${thisMonth}</h1>
+	<h2>${ownerCalendar.name}</h2>
+
+	<ol class="calendar" start="6">
+	
+		<li id="lastmonth">
+			<ul start="${startOfLastMonth}">
+
+				#{list items:daysFromLastMonth, as:'day'}
+				<li>${day}</li>
+				#{/list}
+
+			</ul>
+		</li>
+		
+		<li id="thismonth">
+
+			<ul>
+				#{list items:daysFromThisMonth, as:'day'}
+				
+				<!-- Unterscheidung vom Layout: normal | selektiert | heute -->
+				
+					#{if day == selectedDay} 
+						<li class="selected">
+					#{/if}
+					#{elseif day == today}
+						<li class="today">
+					#{/elseif}
+					#{else}
+						<li>
+					#{/else}
+					
+				<!-- Unterscheidung vom Inhalt: Tag mit Events | Tag ohne Events -->
+				
+					#{if EventDaysOfMonth.contains(day)}
+					<a href="@{Application.showCalendar(calendarOwner.name, applicationUserName, ownerCalendar.name,"","","", "", day)}">${day}</a>	
+					#{/if}
+					
+					#{else}
+					${day}
+					#{/else}
+					
+				<!-- Tag schliessen-->
+				</li>
+					
+			#{/list}
+
+			</ul>
+		</li>
+		
+		<li id="nextmonth">
+
+			<ul>
+				#{list items:daysFromNextMonth, as:'day'}
+				<li>${day}</li>ate
+				#{/list}
+			</ul>
+		</li>
+		
+	</ol>
+
+	<h3>Events today:</h3>
+	
+	#{list items:events, as:'event'}
+		#{if event.day == selectedDay} 
+		<p> ${event.time} ${event.name} </p>
+		#{/if}
+	#{/list}
+
+<h3>Add an event</h3>
+<p font="0.8em">(Users are only allowed to add events to their own calendars):</p>
+
+<h2><font color="#FF0000">${permissionMessage}</font></h2>
+
+#{form @Application.addEvent()}
+
+<table border="0">
+  <tr>
+    <th><p><label for="eventName">Name of the Event:  </label></p></th>
+    <th><p><input type="text" name="eventName" id="eventName" /> <font color="#FF0000">${eventNameMessage}</font></p></th>
+  </tr>
+  <tr>
+    <td><p><label for="eventStart">Start Date: </label></p> <!-- (dd.MM.yyyy HH.mm) --></td>
+    <td><p><input type="text" name="eventStart" id="eventStart" /> <font color="#FF0000">${startDateMessage}</font></p></td>
+  </tr>
+  <tr>
+    <td><p><label for="eventEnd">End Date: </label></p> <!-- (dd.MM.yyyy HH.mm) --></td>
+    <td><p><input type="text" name="eventEnd" id="eventEnd" /> <font color="#FF0000">${endDateMessage}</font></p></td>
+  </tr>
+  
+</table>
+    <p>
+    	<input type="hidden" name="applicationUserName" id="applicationUserName" value="${applicationUserName}" />
+    	<input type="hidden" name="calendarOwnerName" id="calendarOwnerName" value="${calendarOwner.name}" />
+    	<input type="hidden" name="calendarName" id="calendarName" value="${ownerCalendar.name}" />
+    </p>
+    <p>
+    	<label for="isPrivate">Private Event</label>
+    	<input type="checkbox" name="isPrivate" id="isPrivate" />
+    </p>
+    <p>
+        <input type="submit" value="Submit your Event" />
+    </p>
+
+	#{/form}
+	
+	</div>
+    <!-- <div id="centerCol"></div> -->
+</div>
+</body>
+
+</html>

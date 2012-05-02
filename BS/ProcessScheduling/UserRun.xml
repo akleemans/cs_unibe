@@ -1,0 +1,175 @@
+<simulator>
+	<processes>
+		
+		<process id="PROCESS0">
+			<arrival>0</arrival>
+			<instructions>
+				<instruction>
+					<type>CPU</type>
+					<length>12</length>
+				</instruction>
+				
+				<instruction>
+					<type>IO</type>
+					<length>6</length>
+					<device>DISK1</device>
+				</instruction>
+				<instruction>
+					<type>CPU</type>
+					<length>13</length>
+				</instruction>
+				
+			</instructions>
+		</process>
+		
+		<process id="PROCESS1">
+			<arrival>0</arrival>
+			<instructions>
+				<instruction>
+					<type>CPU</type>
+					<length>12</length>
+				</instruction>
+				
+				<instruction>
+					<type>IO</type>
+					<length>6</length>
+					<device>DISK1</device>
+				</instruction>
+				<instruction>
+					<type>CPU</type>
+					<length>12</length>
+				</instruction>
+				
+				<instruction>
+					<type>IO</type>
+					<length>6</length>
+					<device>DISK1</device>
+				</instruction>
+				<instruction>
+					<type>CPU</type>
+					<length>13</length>
+				</instruction>
+				
+				<instruction>
+					<type>IO</type>
+					<length>6</length>
+					<device>DISK1</device>
+				</instruction>
+				<instruction>
+					<type>CPU</type>
+					<length>9</length>
+				</instruction>
+				
+			</instructions>
+		</process>
+		
+		<process id="PROCESS2">
+			<arrival>0</arrival>
+			<instructions>
+				<instruction>
+					<type>CPU</type>
+					<length>12</length>
+				</instruction>
+				
+				<instruction>
+					<type>IO</type>
+					<length>6</length>
+					<device>DISK1</device>
+				</instruction>
+				<instruction>
+					<type>CPU</type>
+					<length>14</length>
+				</instruction>
+				
+				<instruction>
+					<type>IO</type>
+					<length>6</length>
+					<device>DISK1</device>
+				</instruction>
+				<instruction>
+					<type>CPU</type>
+					<length>12</length>
+				</instruction>
+				
+				<instruction>
+					<type>IO</type>
+					<length>6</length>
+					<device>DISK1</device>
+				</instruction>
+				<instruction>
+					<type>CPU</type>
+					<length>9</length>
+				</instruction>
+				
+			</instructions>
+		</process>
+		
+		<process id="PROCESS3">
+			<arrival>0</arrival>
+			<instructions>
+				<instruction>
+					<type>CPU</type>
+					<length>12</length>
+				</instruction>
+				
+				<instruction>
+					<type>IO</type>
+					<length>6</length>
+					<device>DISK1</device>
+				</instruction>
+				<instruction>
+					<type>CPU</type>
+					<length>16</length>
+				</instruction>
+				
+				<instruction>
+					<type>IO</type>
+					<length>6</length>
+					<device>DISK1</device>
+				</instruction>
+				<instruction>
+					<type>CPU</type>
+					<length>11</length>
+				</instruction>
+				
+				<instruction>
+					<type>IO</type>
+					<length>6</length>
+					<device>DISK1</device>
+				</instruction>
+				<instruction>
+					<type>CPU</type>
+					<length>10</length>
+				</instruction>
+				
+			</instructions>
+		</process>
+		
+		<process id="PROCESS4">
+			<arrival>0</arrival>
+			<instructions>
+				<instruction>
+					<type>CPU</type>
+					<length>12</length>
+				</instruction>
+				
+				<instruction>
+					<type>IO</type>
+					<length>6</length>
+					<device>DISK1</device>
+				</instruction>
+				<instruction>
+					<type>CPU</type>
+					<length>15</length>
+				</instruction>
+				
+			</instructions>
+		</process>
+		
+	</processes>
+	<devices>
+		<device id="DISK1">
+			<type>I/O</type>
+		</device>
+	</devices>
+</simulator>

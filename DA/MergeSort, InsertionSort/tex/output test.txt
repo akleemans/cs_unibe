@@ -1,0 +1,26 @@
+Output
+======
+Begin Running Test Cases.
+Test 0 MergeSort with 100 elements took 4ms
+Test 0 InsertionSort with 100 elements took 1ms
+Test 1 MergeSort with 200 elements took 1ms
+Test 1 InsertionSort with 200 elements took 2ms
+Test 2 MergeSort with 500 elements took 1ms
+Test 2 InsertionSort with 500 elements took 1ms
+Test 3 MergeSort with 1000 elements took 1ms
+Test 3 InsertionSort with 1000 elements took 2ms
+Test 4 MergeSort with 2000 elements took 1ms
+Test 4 InsertionSort with 2000 elements took 12ms
+Test 5 MergeSort with 5000 elements took 3ms
+Test 5 InsertionSort with 5000 elements took 70ms
+Test 6 MergeSort with 10000 elements took 13ms
+Test 6 InsertionSort with 10000 elements took 395ms
+Test 7 MergeSort with 20000 elements took 17ms
+Test 7 InsertionSort with 20000 elements took 1298ms
+Test 8 MergeSort with 50000 elements took 41ms
+Test 8 InsertionSort with 50000 elements took 7190ms
+Test 9 MergeSort with 100000 elements took 66ms
+Test 9 InsertionSort with 100000 elements took 28067ms
+Test 10 MergeSort with 200000 elements took 140ms
+Test 10 InsertionSort with 200000 elements took 113544ms
+

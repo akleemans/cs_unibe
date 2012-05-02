@@ -1,0 +1,13 @@
+# Second exercise sheet #
+
+Modify the Snakes and Ladders game from the lecture in the following ways:
+
+1. Add two new types of squares: LargeSquare and TrapDoor. A LargeSquare can hold more than one player. If more than one player steps on a TrapDoor, the TrapDoor sends all players on it to a LargeSquare that it is connected to.
+
+2. Write a unit test LargeSquareTest that verifies that LargeSquare works as intended.
+
+3. Add more test methods to TrapDoorTest that verify that your TrapDoor works as intended.
+
+4. Modify the game such that the Game.main method will run on a field with a large squares and a trap door. The LargeField and TrapDoor should be distinguishable in the textual output of the game.
+
+5. Add API documentation to the snakes.ISquare interface according to the Oracle-provided rules (see [http://java.sun.com/j2se/javadoc/writingdoccomments/](http://java.sun.com/j2se/javadoc/writingdoccomments/)

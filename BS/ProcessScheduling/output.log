@@ -1,0 +1,30 @@
+Instantiation took 0.053 second(s)
+ System Time: 205	[100,00%]
+   User Time: 205	[100,00%]
+   Idle Time: 0	[0,00%]
+
+   System Calls: 32
+Registers Saves: 11
+
+Av. Turnaround Time: 160
+     Wait Mean Time: 106
+Instantiation took 0.054 second(s)
+ System Time: 207	[100,00%]
+   User Time: 205	[99,03%]
+   Idle Time: 2	[0,97%]
+
+   System Calls: 116
+Registers Saves: 11
+
+Av. Turnaround Time: 168
+     Wait Mean Time: 104
+Instantiation took 0.054 second(s)
+ System Time: 217	[100,00%]
+   User Time: 205	[94,47%]
+   Idle Time: 12	[5,53%]
+
+   System Calls: 32
+Registers Saves: 11
+
+Av. Turnaround Time: 150
+     Wait Mean Time: 96

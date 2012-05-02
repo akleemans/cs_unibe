@@ -1,0 +1,29 @@
+Output to SortTestApp with randomized QuickSort:
+================================================
+
+Anzahl zu sortierende Records: 100
+   Erster QuickSort: 5 ms   QuickSort auf den bereits sortierten Daten: 3 ms
+Anzahl zu sortierende Records: 200
+   Erster QuickSort: 5 ms   QuickSort auf den bereits sortierten Daten: 4 ms
+Anzahl zu sortierende Records: 400
+   Erster QuickSort: 4 ms   QuickSort auf den bereits sortierten Daten: 2 ms
+Anzahl zu sortierende Records: 800
+   Erster QuickSort: 4 ms   QuickSort auf den bereits sortierten Daten: 5 ms
+Anzahl zu sortierende Records: 1600
+   Erster QuickSort: 13 ms   QuickSort auf den bereits sortierten Daten: 13 ms
+Anzahl zu sortierende Records: 3200
+   Erster QuickSort: 19 ms   QuickSort auf den bereits sortierten Daten: 36 ms
+Anzahl zu sortierende Records: 6400
+   Erster QuickSort: 65 ms   QuickSort auf den bereits sortierten Daten: 92 ms
+Anzahl zu sortierende Records: 12800
+   Erster QuickSort: 224 ms   QuickSort auf den bereits sortierten Daten: 228 ms
+Anzahl zu sortierende Records: 25600
+   Erster QuickSort: 882 ms   QuickSort auf den bereits sortierten Daten: 893 ms
+Anzahl zu sortierende Records: 51200
+   Erster QuickSort: 3547 ms   QuickSort auf den bereits sortierten Daten: 3534 ms
+Anzahl zu sortierende Records: 102400
+   Erster QuickSort: 14625 ms   QuickSort auf den bereits sortierten Daten: 14570 ms
+Anzahl zu sortierende Records: 204800
+   Erster QuickSort: 64131 ms   QuickSort auf den bereits sortierten Daten: 66878 ms
+Anzahl zu sortierende Records: 409600
+   Erster QuickSort: 295792 ms   QuickSort auf den bereits sortierten Daten: 289255 ms

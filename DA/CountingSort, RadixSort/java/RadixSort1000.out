@@ -1,0 +1,18 @@
+Output of RadixSortTester.Java
+==============================
+
+RadixSort: Number of elements: 10000, Time: 1010ms
+Improved RadixSort: Number of elements: 10000, Time: 794ms
+RadixSort: Number of elements: 20000, Time: 2617ms
+Improved RadixSort: Number of elements: 20000, Time: 1481ms
+RadixSort: Number of elements: 40000, Time: 7095ms
+Improved RadixSort: Number of elements: 40000, Time: 4912ms
+RadixSort: Number of elements: 80000, Time: 15107ms
+Improved RadixSort: Number of elements: 80000, Time: 9811ms
+RadixSort: Number of elements: 160000, Time: 32853ms
+Improved RadixSort: Number of elements: 160000, Time: 21726ms
+RadixSort: Number of elements: 320000, Time: 72266ms
+Improved RadixSort: Number of elements: 320000, Time: 47959ms
+RadixSort: Number of elements: 640000, Time: 200808ms
+Improved RadixSort: Number of elements: 640000, Time: 161835ms
+

@@ -1,0 +1,189 @@
+\documentclass[a4paper,10pt,headlines=3.2]{scrartcl}
+\usepackage{graphicx}           %Bilder
+
+%\usepackage[T1]{fontenc}        %Umlaute
+%\usepackage[latin1]{inputenc}   %Windows
+%\usepackage[utf8x]{inputenc}	%Linux
+\usepackage{ucs}
+
+\usepackage[ngerman]{babel}     %Deutsche Sprache
+\usepackage{amsmath}            %Math. Zeichen
+\usepackage{pifont}             %Skalierbare Schriftart
+\usepackage{array}
+\usepackage{epsfig}             %Erweiterte Grafiken
+\usepackage{makeidx}            %Stichwortverzeichnis
+\usepackage[pdftex]{color} 
+
+\newcommand{\changefont}[3]{
+\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
+
+\makeindex
+
+\usepackage[automark]{scrpage2}
+\usepackage[nosectionbib]{apacite}               %Zitieren
+
+%\usepackage[colorlinks]{hyperref}%Hyperlinks
+
+\usepackage{lmodern}
+\usepackage{scrpage2}           %KOMA-Script
+\usepackage{tipa}
+\usepackage{qtree}
+\usepackage{pgf}
+
+
+\usepackage{remreset}			%Fussnoten global
+\makeatletter
+\@removefromreset{footnote}{chapter}
+\makeatother 
+
+\setcounter{tocdepth}{3}
+
+%Kopfzeilen
+\pagestyle{scrheadings}         %Seitenstil scrheadings verwenden
+
+%\setlength{\textheight}{24cm}
+%\setlength{\textwidth}{16cm}
+%\setlength{\topmargin}{-2cm}
+%\setlength{\oddsidemargin}{0cm}
+
+% Groesse des Textbereiches in der Seite
+\setlength{\textwidth}{16cm}
+\setlength{\textheight}{22cm}
+% Kopf- und Fusszeile, Hoehe und Abstand vom Text
+\setlength{\headheight}{15pt}
+\setlength{\headsep}{0.8cm}
+% Linker Seiteneinzug
+\setlength{\oddsidemargin}{2.5cm} \addtolength{\oddsidemargin}{-1in}
+\setlength{\evensidemargin}{2.5cm} \addtolength{\evensidemargin}{-1in}
+% Andere Groessen ausrechnen (vertikal zentrieren)
+\setlength{\footskip}{\headsep}
+\addtolength{\footskip}{\headheight}
+\setlength{\topmargin}{\paperheight}
+\addtolength{\topmargin}{-\textheight}
+\addtolength{\topmargin}{-\headheight}
+\addtolength{\topmargin}{-\headsep}
+\addtolength{\topmargin}{-\footskip}
+\addtolength{\topmargin}{-2in}
+\addtolength{\topmargin}{-0.5\topmargin}
+
+%Schriftart
+\changefont{cmss}{m}{n}
+
+%Abstand zurücksetzen
+\setlength{\headheight}{20pt}
+
+\usepackage{listings} 
+\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt} \lstset{language=Java} 
+
+\clearscrheadfoot
+%\renewcommand{\headheight}{40pt} 
+\ihead[]{Datenstrukturen und Algorithmen \\Frühlingssemester 2011 \\Institut für angewandte Mathematik} % - links
+\ohead[asdasd]{Übungsblatt 6 \\Abgabetermin 7. April 2011 \\Adrianus Kleemans [07-111-693]} % - linke Kopfzeile 
+\setheadsepline{.4pt} %Separate Linie im Kopf
+\cfoot[\pagemark]{\pagemark} %- mittlere Fusszeile 
+
+\begin{document}
+\section*{Theoretische Aufgaben}
+\subsection*{Aufgabe 1}
+\begin{itemize}
+ \item Erfolgreiches Suchen: Bleibt $O(1)$.
+ \item Erfolgloses Suchen: Sobald ein Element grösser ist als das gesuchte kann abgebrochen werden: $O(n) \rightarrow O(n)/2$. Dass heisst, die asymptotische Laufzeit bleibt $O(n)$, aber in der Praxis halbiert sich die Laufzeit.
+ \item Einfügen: Element muss an richtiger Stelle eingesetzt werden, dass verlangsamt den Prozess: $O(n)$.
+ \item Löschen: Bleibt $O(1)$.
+\end{itemize}
+
+\subsection*{Aufgabe 2}
+\begin{center}
+\begin{tabular}{|c|c|}\hline
+\textbf{k} & \textbf{h(k)}\\\hline
+51 & 519\\\hline
+52 & 137\\\hline
+53 & 755\\\hline
+54 & 373\\\hline
+55 & 991\\\hline
+\end{tabular}
+\end{center}
+
+\subsection*{Aufgabe 3}
+\begin{itemize}
+ \item \textbf{Lineare Sondierung}\\
+k=8: Überprüfe Feld [8] $\rightarrow$ füge 8 in Feld [8] ein.\\
+k=25: Überprüfe Feld [3] $\rightarrow$ füge 25 in Feld [3] ein.\\
+k=12: Überprüfe Feld [1] $\rightarrow$ füge 12 in Feld [1] ein.\\
+k=11: Überprüfe Feld [0] $\rightarrow$ füge 11 in Feld [0] ein.\\
+k=34: Überprüfe Feld [1], enthält bereits Schlüssel 12, überprüfe [2] $\rightarrow$ füge 34 in Feld [2] ein.\\
+k=22: Überprüfe Feld [0], besetzt, [1], [2], [3] auch, [4] ist verfügbar $\rightarrow$ füge 22 in Feld [4] ein.\\
+k=16: Überprüfe Feld [5] $\rightarrow$ füge 16 in Feld [5] ein.\\
+k=54: Überprüfe Feld [10] $\rightarrow$ füge 54 in Feld [10] ein.\\
+k=38: Überprüfe Feld [5], ist besetzt, [6] $\rightarrow$ füge 38 in Feld [6] ein.\\
+{%
+\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
+\begin{center}
+\begin{tabular}{ccccccccccc}
+\textbf{0} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10}\\\hline
+\mc{1}{|c|}{11} & \mc{1}{c|}{12} & \mc{1}{c|}{34} & \mc{1}{c|}{25} & \mc{1}{c|}{22} & \mc{1}{c|}{16} & \mc{1}{c|}{38} & \mc{1}{c|}{NULL} & \mc{1}{c|}{8} & \mc{1}{c|}{NULL} & \mc{1}{c|}{54}\\\hline
+\end{tabular}
+\end{center}
+}%
+
+ \item \textbf{Quadratische Sondierung}\\
+k=8: Überprüfe Feld [8] $\rightarrow$ füge 8 in Feld [8] ein.\\
+k=25: Überprüfe Feld [3] $\rightarrow$ füge 25 in Feld [3] ein.\\
+k=12: Überprüfe Feld [1] $\rightarrow$ füge 12 in Feld [1] ein.\\
+k=11: Überprüfe Feld [0] $\rightarrow$ füge 11 in Feld [0] ein.\\
+k=34: Überprüfe Feld [1], enthält bereits Schlüssel 12, überprüfe [5]\footnote{Berechnung des Feldes: $1 + c_1\cdot1^1 + c_2\cdot1^1 = 1 + 1 + 3 = 5$} $\rightarrow$ füge 34 in Feld [5] ein.\\
+k=22: Überprüfe Feld [0], besetzt, [4] ist verfügbar $\rightarrow$ füge 22 in Feld [4] ein.\\
+k=16: Überprüfe Feld [5], besetzt, [9] ist verfügbar $\rightarrow$ füge 16 in Feld [9] ein.\\
+k=54: Überprüfe Feld [10] $\rightarrow$ füge 54 in Feld [10] ein.\\
+k=38: Überprüfe Feld [5], ist besetzt, [9] und [8] auch, [2] ist frei $\rightarrow$ füge 38 in Feld [2] ein.\\
+{%
+\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
+\begin{center}
+\begin{tabular}{ccccccccccc}
+\textbf{0} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10}\\\hline
+\mc{1}{|c|}{11} & \mc{1}{c|}{12} & \mc{1}{c|}{38} & \mc{1}{c|}{25} & \mc{1}{c|}{22} & \mc{1}{c|}{34} & \mc{1}{c|}{NULL} & \mc{1}{c|}{NULL} & \mc{1}{c|}{8} & \mc{1}{c|}{16} & \mc{1}{c|}{54}\\\hline
+\end{tabular}
+\end{center}
+}%
+
+ \item \textbf{Doppeltes Hashing}\\
+k=8: Überprüfe Feld [8] $\rightarrow$ füge 8 in Feld [8] ein.\\
+k=25: Überprüfe Feld [3] $\rightarrow$ füge 25 in Feld [3] ein.\\
+k=12: Überprüfe Feld [1] $\rightarrow$ füge 12 in Feld [1] ein.\\
+k=11: Überprüfe Feld [0] $\rightarrow$ füge 11 in Feld [0] ein.\\
+k=34: Überprüfe Feld [1], enthält bereits Schlüssel 12, überprüfe [6]\footnote{Berechnung: $1 + (1 + k\textrm{ mod }10) = 1 + 1 + 4 = 6$} $\rightarrow$ füge 34 in Feld [6] ein.\\
+k=22: Überprüfe Feld [0], besetzt, [3] und [6] auch, [9] ist verfügbar $\rightarrow$ füge 22 in Feld [9] ein.\\
+k=16: Überprüfe Feld [5] $\rightarrow$ füge 16 in Feld [5] ein.\\
+k=54: Überprüfe Feld [10] $\rightarrow$ füge 54 in Feld [10] ein.\\
+k=38: Überprüfe Feld [5], ist besetzt, [3], [1], [10], [8] und [6] auch, [4] ist frei $\rightarrow$ füge 38 in Feld [4] ein.\\
+{%
+\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
+\begin{center}
+\begin{tabular}{ccccccccccc}
+\textbf{0} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10}\\\hline
+\mc{1}{|c|}{11} & \mc{1}{c|}{12} & \mc{1}{c|}{NULL} & \mc{1}{c|}{25} & \mc{1}{c|}{38} & \mc{1}{c|}{16} & \mc{1}{c|}{34} & \mc{1}{c|}{NULL} & \mc{1}{c|}{8} & \mc{1}{c|}{22} & \mc{1}{c|}{54}\\\hline
+\end{tabular}
+\end{center}
+}%
+
+\end{itemize}
+
+\subsection*{Aufgabe 4}
+Die Länge der Suche hängt davon ab, in welcher Reihenfolge die Schlüssel eingefügt wurden. Diese wiederum wird durch das Einfügen bestimmt. Beim linearen Sortieren wird aber der nächstoffene Platz belegt, und die Reihenfolge wird erhalten (analog zur Stabilität bei Sortieralgorithmen). Dies muss beim quadratischen Sortieren (in Abhängigkeit der gewählten Schlüssel $c_1$ und $c_2$) nicht unbedingt gewährleistet werden, da über eine bestimmte Anzahl von Elementen $c_1\cdot i + c_2\cdot i^2$ 'gesprungen' wird.
+
+\subsection*{Aufgabe 5}
+???
+
+\section*{Praktische Aufgaben}
+\subsection*{Aufgabe 1}
+Siehe Datei \texttt{BouncingBallsSimulationImproved.java}.
+\newpage
+
+\subsection*{Aufgabe 2}
+\begin{figure}[ht]
+\centering
+\includegraphics[height=8cm]{aufg2}
+\end{figure}
+Bei grösseren Tabellen müssen wiederum sehr viele Punkte miteinander verglichen werden, was zur Verlangsamung führt, wie dies am Anfang der Fall war. Bei kleineren Tabellen kann effizienter verglichen werden, bis zu einer gewissen Grösse, wenn dann noch kleinere Felder gewählt werden, ist der Algorithmus wieder ineffizient. Es scheint, dass von den gewählten Intervallen bei n=1000 Partikel eine Tabelle mit Grösse m=40, bei n=2000 Grösse m=70 und bei n=3000 eine Grösse von m=100 optimal ist.
+
+\end{document}

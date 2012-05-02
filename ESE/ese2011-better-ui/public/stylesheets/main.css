@@ -1,0 +1,10 @@
+*                   	{margin:0;padding:0; align:center; text-align: center}
+body                	{color: #AAAAAA /* #383838 */; font:1.1em Verdana, Arial, Helvetica, sans-serif; 
+							background: url(../images/bg.jpg) top center no-repeat #545454;}
+/*body *              	{display:inline;}*/
+ol.calendar         	{width:28em; margin:0 auto; display:block; min-height: 50px;
+							padding: 12px 0 0 20px;}
+li                  	{list-style: none;}
+p						{color:#CCCCCC; text-align:center;}
+p.link					{text-align: center; display: block;}
+a						{color:#000000; text-decoration: none; text-underline: none;}

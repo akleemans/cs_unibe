@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+       "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Kalendar</title>
+</head>
+<body>
+
+<h1>Kalender-Demo!</h1>
+
+<form name="calendarform" action="input_checkbox.htm">
+  <p>Anzeige:</p>
+  <p>
+    <input type="checkbox" name="agnetha" id="agnetha" onclick="link(this)" checked="checked"> Agnetha<br>
+    <input type="checkbox" name="anni-frid" id="annifrid" onclick="link(this)"> Anni-Frid<br>
+    <input type="checkbox" name="benny" id="benny" onclick="link(this)" checked="checked"> Benny
+  </p>
+</form>
+
+<script type="text/javascript">
+function link(boxName) {
+	var x = document.forms.calendarform;
+	x[0].checked=true;
+
+	if(boxName.checked = true) {
+		document.location.href="test.html?q="+boxName.name;
+	}
+} 
+</script>
+
+
+</body>
+</html>
+

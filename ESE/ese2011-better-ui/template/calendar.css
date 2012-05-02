@@ -1,0 +1,66 @@
+/*
+ * Rafael Breu
+ * Adrianus Kleemans
+ * 
+ * with inspiration of http://css-tricks.com/ ;)
+ *
+ -----------------------------*/
+
+*                   	{margin:0;padding:0;}
+body                	{color: #383838; font:1.1em Verdana, Arial, Helvetica, sans-serif; 
+				background: url(images/bg.jpg) top center no-repeat #545454;}
+/*body *              	{display:inline;}*/
+ol.calendar         	{width:28em; margin:0 auto; display:block; min-height: 50px;
+				padding: 12px 0 0 20px;}
+li                  	{list-style: none;}
+p.link			{text-align: center;display: block;}
+a			{color:#000000; text-decoration: none; text-underline: none;}
+
+
+/*
+ * h1
+ -------------------------*/
+h1			{color:#E0E0E0; font:4em Verdana, Arial, Helvetica, sans-serif; 
+				padding: 20px 0 0 30px; display: block; text-align:center;}
+
+
+/*
+ * h2
+ -------------------------*/
+h2			{color:#FFFFCC; font:1.1em Verdana, Arial, Helvetica, sans-serif; 
+				padding: 10px 0 0 15px; display: block; text-align:center;}
+
+
+/*
+ * Day styles
+ -------------------------*/
+li li               	{width: 50px; height: 50px; float: left; margin:.2em; padding:.2em; overflow:auto;
+				background: url(images/day-bg.png) bottom right no-repeat;}
+
+/*
+ * Day content
+ -------------------------*/
+li li p             	{font-size: .7em; display: block;}
+li li ol            	{width: 50px;}
+li li ul li,
+li li ol li         	{font-size: .7em; display: block; height: 50px; width:50px; background: none;
+				margin:0;padding: .2em 0; float:none;}
+
+
+/*
+ * Today class
+ -------------------------*/
+li li.today       	{background: url(images/today.png);}
+
+
+/*
+ * Selected class
+ -------------------------*/
+li li.selected       	{background: url(images/selected2.png);}
+
+
+/*
+ * Inactive months
+ -------------------------*/
+li#lastmonth li,
+li#nextmonth li     	{color: #606060; background: url(images/day-bg-inactive.png);}

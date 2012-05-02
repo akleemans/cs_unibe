@@ -1,0 +1,1 @@
+markdown2pdf --custom-header=head.sty <filename>.mdown --output=<filename>.pdf

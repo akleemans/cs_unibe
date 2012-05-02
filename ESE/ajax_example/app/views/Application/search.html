@@ -1,0 +1,6 @@
+	#{ifnot results}
+		Noch keine Einträge gefunden...
+	#{/ifnot}
+	#{list items:results, as:'user'}
+			<a href="#" modal-user-name="${user.name}" data-reveal-id="modal">${user.name}</a><br />
+	#{/list}

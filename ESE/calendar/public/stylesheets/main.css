@@ -1,0 +1,146 @@
+A {
+	font-style: normal;
+}
+A:link {
+	color: blue;
+	text-decoration: none;
+}
+
+A:visited {
+	color: blue;
+}
+
+A:active {
+	color: blue;
+}
+
+A:hover {
+	text-decoration: underline;
+	color: silver;
+}
+
+A.button {
+	border-style: dotted; 
+}
+
+li {
+	list-style-type: disc;
+}
+
+body {
+	font-family: Helvetica,Helv;
+	/* font-family: sans-serif; */
+	background-color: #FFFFFF;
+	margin-left: 100px;
+}
+
+table#calendar {
+	float: left;
+	width: 70%;
+	table-layout: fixed;
+	vertical-align: middle;
+	margin-bottom: 30px;
+}
+
+table#calendar a {
+	font-size: large;
+	font-style: normal;
+	color: inherit;
+	display: block;
+	position: relative;
+	line-height: 30px;
+	text-decoration: none;
+}
+
+table#calendar td {
+	text-align: center;
+	background-color: #FFF;
+	height: 35px;
+	border: solid 1px #000;
+}
+
+table#calendar td.title {
+	background-color: #F0F0F0;
+	font-weight: bold;
+}
+
+table#calendar td.entry {
+	background-color: "#FFF";
+	color: black;
+	font-style: normal;
+}
+
+table#calendar td.selected {
+	background-color: silver;
+	font-style: normal;
+	color: black;
+}
+
+table#calendar td.today {
+	background-color: gray;
+	color: black;
+	font-style: normal;
+}
+
+#previousMonth {
+	position: absolute;
+	left: 9%;
+}
+
+#nextMonth {
+	position: absolute;
+	left: 68.5%;
+}
+
+form#calendarform {
+	width: 15%;
+	right: 20px;
+	margin-bottom: 30px;
+}
+
+#eventInformation {
+	border: medium;
+	border-style: solid;
+	border-radius: 5px;
+	padding: 5px;
+	max-width: 68.5%;
+}
+
+#searchForUsers {
+	border-width: 2px;
+	border-style: solid;
+	border-radius: 5px;
+	padding: 5px;
+	max-width: 20%;
+	float:left; 
+	width: 10%; 
+	border-color: hsl(0, 50%, 0%);
+}
+
+#eventName {
+	font-weight: bold;
+	font-size: large;
+}
+
+#important {
+	font-weight: normal;
+	font-size: medium;
+}
+
+#unimportant {
+	color: gray;
+	font-weight: normal;
+	font-size: medium;
+}
+
+#currentMonth {
+	position: absolute;
+	left: 35%;
+	font-weight : bold;
+	font-size: large;
+	font-weight: bold;
+}
+
+#calendarNavigation {
+	text-align: center;
+}

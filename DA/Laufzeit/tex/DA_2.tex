@@ -1,0 +1,179 @@
+\documentclass[a4paper,10pt,headlines=3.2]{scrartcl}
+\usepackage{graphicx}           %Bilder
+
+%\usepackage[T1]{fontenc}        %Umlaute
+%\usepackage[latin1]{inputenc}   %Windows
+%\usepackage[utf8x]{inputenc}	%Linux
+\usepackage{ucs}
+
+\usepackage[ngerman]{babel}     %Deutsche Sprache
+\usepackage{amsmath}            %Math. Zeichen
+\usepackage{pifont}             %Skalierbare Schriftart
+\usepackage{array}
+\usepackage{epsfig}             %Erweiterte Grafiken
+\usepackage{makeidx}            %Stichwortverzeichnis
+\usepackage[pdftex]{color} 
+
+\newcommand{\changefont}[3]{
+\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
+
+\makeindex
+
+\usepackage[automark]{scrpage2}
+\usepackage[nosectionbib]{apacite}               %Zitieren
+
+%\usepackage[colorlinks]{hyperref}%Hyperlinks
+
+\usepackage{lmodern}
+\usepackage{scrpage2}           %KOMA-Script
+\usepackage{tipa}
+\usepackage{qtree}
+
+\usepackage{remreset}			%Fussnoten global
+\makeatletter
+\@removefromreset{footnote}{chapter}
+\makeatother 
+
+\setcounter{tocdepth}{3}
+
+%Kopfzeilen
+\pagestyle{scrheadings}         %Seitenstil scrheadings verwenden
+
+%\setlength{\textheight}{24cm}
+%\setlength{\textwidth}{16cm}
+%\setlength{\topmargin}{-2cm}
+%\setlength{\oddsidemargin}{0cm}
+
+% Groesse des Textbereiches in der Seite
+\setlength{\textwidth}{16cm}
+\setlength{\textheight}{22cm}
+% Kopf- und Fusszeile, Hoehe und Abstand vom Text
+\setlength{\headheight}{15pt}
+\setlength{\headsep}{0.8cm}
+% Linker Seiteneinzug
+\setlength{\oddsidemargin}{2.5cm} \addtolength{\oddsidemargin}{-1in}
+\setlength{\evensidemargin}{2.5cm} \addtolength{\evensidemargin}{-1in}
+% Andere Groessen ausrechnen (vertikal zentrieren)
+\setlength{\footskip}{\headsep}
+\addtolength{\footskip}{\headheight}
+\setlength{\topmargin}{\paperheight}
+\addtolength{\topmargin}{-\textheight}
+\addtolength{\topmargin}{-\headheight}
+\addtolength{\topmargin}{-\headsep}
+\addtolength{\topmargin}{-\footskip}
+\addtolength{\topmargin}{-2in}
+\addtolength{\topmargin}{-0.5\topmargin}
+
+%Schriftart
+\changefont{cmss}{m}{n}
+
+%Abstand zurücksetzen
+\setlength{\headheight}{20pt}
+
+\usepackage{listings} 
+\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt} \lstset{language=Java} 
+
+\clearscrheadfoot
+%\renewcommand{\headheight}{40pt} 
+\ihead[]{Datenstrukturen und Algorithmen \\Frühlingssemester 2011 \\Institut für angewandte Mathematik} % - linke Kopfzeile 
+\ohead[asdasd]{Übungsblatt 2 \\Abgabetermin 10. März 2011 \\Adrianus Kleemans [07-111-693]} % - linke Kopfzeile 
+\setheadsepline{.4pt} %Separate Linie im Kopf
+\cfoot[\pagemark]{\pagemark} %- mittlere Fusszeile 
+
+\begin{document}
+\section*{Theoretische Aufgaben}
+\subsection*{Aufgabe 1}
+Die Definition der $O$-Notation $O(g(n))= \{f(n):\textrm{ es existieren positive Konstanten } c \textrm{ und } n_{0}, \textrm{ sodass }
+0 \leq f(n) \leq f(n) \leq c \cdot g(n) \textrm{ für alle } n \geq n_{0} \}$
+Die $O(n)$-Notation kann auch als obere symptotische Schranke verstanden werden. Sie kann verwendet werden, bis auf einen konstanten Faktor die obere Schranke einer Funktion anzugeben.\\
+Bezogen auf die Aufgabe lässt sich sagen, dass die Aussage deshalb keinen Sinn macht, weil die $O(n)$-Notation eine obere Schranke festlegt, die Formulierung von \textit{mindestens} jedoch dem widerspricht.
+
+\subsection*{Aufgabe 2}
+Gemäss der Definition 
+$\Theta(g)= \{f:\textrm{ es existieren positive Konstanten } c_{1}, c_{2} \textrm{ und } n_{0}, \textrm{ sodass } \\
+0 \leq c_{1}\cdot g(n) \leq f(n) \leq c_{2} \cdot g(n) \textrm{ für alle } n \geq n_{0} \}$ \\
+ist die $\Theta(n)$-Notation dadurch definiert, dass es ab einem Wert $n_{0}$ eine obere Schranke $c_{1}\cdot g(n) = O(n)$ gibt, und ebenso eine untere Schranke $\Omega(g(n))$.
+Die Laufzeit eines Algorithmus muss deshalb dann genau $\Theta(g(n))$ sein, wenn $O(g(n))$ und $\Omega(g(n))$ auch zutreffen.
+
+\subsection*{Aufgabe 3}
+Zeige $a^{log_{b} n} = n^{log_{b} a}$:
+\begin{eqnarray}
+a^{log_{b} n} = n^{log_{b} a} \textrm{ // } log_{n}\\
+log_{n}(a^{log_{b} n}) = log_{n}(n^{log_{b} a})\\
+log_{b}(n) \cdot log_{n}(a) = log_{b}(a) \cdot log_{n}(n)\\
+log_{b}(n) \cdot \frac{log_{b}(a)}{log_{b}(n)} = log_{b}(a) \\
+log_{b}(a) = log_{b}(a)
+\end{eqnarray}
+
+\subsection*{Aufgabe 4}
+Die Gleichung $\Theta(log_{a} n) = \Theta(log_{b} n)$ stimmt nur, wenn die beiden $\Theta()$-Funktionen um einen konstanten Faktor danebenliegen.\\
+Es gilt deshalb zu zeigen: $\Theta(log_{a} n) = c\cdot\Theta(log_{b} n)$.
+\begin{eqnarray}
+\Theta(log_{a} n) = \Theta(\frac{log_{a} n}{log_{a} b}) \\
+\Rightarrow log_{a} b\cdot\Theta(log_{a} n) = \Theta(log_{a} n)
+\end{eqnarray}
+Da $a$ und $b$ konstant sind, muss auch $log_{a} b$ konstant sein. Damit muss auch $\Theta(log_{a} n) = \Theta(log_{b} n)$ gelten.
+
+
+\subsection*{Aufgabe 5}
+Zeigen Sie, dass die Rekursionsgleichung $T(n) = 2\cdot T([n/4] + 12) + 3n$ die Lösung $O(n\cdot log(n))$ hat.\\\\
+Die Induktionsannahme wird in die Gleichung eingesetzt:
+\begin{eqnarray}
+T(n) = 2\cdot T(\frac{n}{4} + 12) + 3n \leq 2\cdot\frac{n}{4}\cdot log\frac{n}{4} + 3n\\
+=\frac{n}{2}\cdot c\cdot log\frac{n}{4} + 3n \\
+=\frac{n\cdot c\cdot log_{4} n}{2} - \frac{n\cdot c\cdot log_{4} 4}{2} + 3n\\
+\underbrace{c\cdot n\cdot log_{4}(n)}_{Induktionsannahme} \underbrace{- \frac{c\cdot n\cdot log_{4}(n)}{2} - \frac{c\cdot n}{2} + 3n}_{Residuum}
+\end{eqnarray}
+Ungleichung gilt, falls $c \geq 1$.
+
+\subsection*{Aufgabe 6}
+Strukturbaum zu $T(n) = T(n/3) + T(2n/3) + cn$:\\\\
+\begin{minipage}{8 cm} 
+\Tree [.{$c\cdot n$} 
+	    [.{c$\cdot n\cdot\frac{1}{3}$} {$c\cdot n\cdot\frac{1}{3}^2$} {$c\cdot n\cdot\frac{1}{3}\cdot\frac{2}{3}$} ] 
+	    [.{c$\cdot n\cdot\frac{2}{3}$} {$c\cdot n\cdot\frac{2}{3}\cdot\frac{1}{3}$} {$c\cdot n\cdot\frac{2}{3}^2$} ] 
+      ]
+
+\end{minipage}
+\begin{minipage}{8 cm} 
+$= c\cdot n$\\\\
+$= c\cdot n$\\\\
+$= c\cdot n$\\
+\end{minipage}
+Höhe des Baumes: $log(n)$ (da der Algorithmus stoppt, wenn $\frac{1}{3}^{n}=1$).\\
+$T(n) = \sum\limits_{i=0}^{h} cn$, wobei die Höhe $h = log(n)$\\
+$\Rightarrow T(n)= c\cdot n\cdot log(n)$. Dies ist in $\Omega(n\cdot log(n))$.
+
+\subsection*{Aufgabe 7}
+\begin{eqnarray}
+T(n) = T(n/2) + \Theta(1)\\
+a=1,b=2, f(n)=1\\
+\textrm{Fall 2: }f(n) = \Theta(n^{log_{b} a})\\
+\Rightarrow 1 = \Theta(n^{0})\\
+T(n) = \Theta(lg(n)) = \Theta(log(n))
+\end{eqnarray}
+
+
+\subsection*{Aufgabe 8}
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+Zeitkomplexität T(n) & Problemgrösse lösbar in 10s & Problemgrösse lösbar in 1000s\\
+\hline
+$5n$ & 200 & 20000\\
+\hline
+$3n^5$ & 3 & 8\\
+\hline
+$2n^{1.1}$ & 284 & 18697\\
+\hline
+$5log_{2}(7n)$ & $2.3\cdot 10^{59}$ & $3.9\cdot 10^{6020}$\\
+\hline
+$2^{4n}$ & 2 & 4 \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection*{Aufgabe 9}
+Äussere Schleife: $log(n)$. Innere Schleife: $n$.\\
+Funktion: $\Theta(n\cdot log(n))$. Laufzeit in der Summenformel: $T(n) = \sum\limits_{i=0}^{n} 2^{i-1} = \frac{2^{n+1}-1}{2}$\\
+\end{document}

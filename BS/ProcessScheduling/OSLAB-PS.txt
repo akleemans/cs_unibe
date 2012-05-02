@@ -1,0 +1,55 @@
+You should only modify the following files in the subfolder yourFile:
+FCFS.java, RR.java and SRTF.java
+
+
+WINDOWS
+=======
+-create a input file (not needed to be redone every time) 
+<java -cp ..\;. cdtl.CDTLService ..\template\TemplateRun.xml UserRun.xml>
+
+
+TASK1>
+-compile your file
+<javac -cp ..\;. FCFS.java>
+-start simulation
+<java -cp ..\;. pssimulator.SimulatorService UserRun.xml FCFS>
+
+TASK2>
+-compile your file
+<javac -cp ..\;. RR.java>
+-start simulation
+<java -cp ..\;. pssimulator.SimulatorService UserRun.xml RR>
+
+
+TASK3>
+-compile your file
+<javac -cp ..\;. SRTF.java>
+-start simulation
+<java -cp ..\;. pssimulator.SimulatorService UserRun.xml SRTF>
+
+
+Linux
+=====
+-create a input file (not needed to be redone every time) 
+<java -cp ../:. cdtl.CDTLService ../template/TemplateRun.xml UserRun.xml>
+
+
+TASK1>
+-compile your file
+<javac -cp ../:. FCFS.java>
+-start simulation
+<java -cp ../:. pssimulator.SimulatorService UserRun.xml FCFS>
+
+TASK2>
+-compile your file
+<javac -cp ../:. RR.java>
+-start simulation
+<java -cp ../:. pssimulator.SimulatorService UserRun.xml RR>
+
+
+TASK3>
+-compile your file
+<javac -cp ../:. SRTF.java>
+-start simulation
+<java -cp ../:. pssimulator.SimulatorService UserRun.xml SRTF>
+

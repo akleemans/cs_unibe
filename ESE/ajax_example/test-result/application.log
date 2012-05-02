@@ -1,0 +1,44 @@
+28 Sep 2011 15:54:42,401 INFO  ~ Starting C:\Users\otruffer\Documents\ESE\presentation
+28 Sep 2011 15:54:42,931 WARN  ~ You're running Play! in DEV mode
+28 Sep 2011 15:54:43,009 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+28 Sep 2011 15:54:50,934 WARN  ~ Ignoring {name} (static params must be specified as key:'value',...)
+28 Sep 2011 15:54:53,274 INFO  ~ Connected to jdbc:h2:mem:play;MODE=MYSQL;LOCK_MODE=0
+28 Sep 2011 15:54:53,305 INFO  ~ Application 'presentation' is now started !
+28 Sep 2011 15:54:55,606 ERROR ~ 
+
+@68002hjme
+Internal Server Error (500) for request GET /favicon.ico
+
+Execution exception (In /app/controllers/Application.java around line 20)
+NullPointerException occured : null
+
+play.exceptions.JavaExecutionException
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:229)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException
+	at controllers.Application.showCalendars(Application.java:20)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:546)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:500)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:476)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:471)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:159)
+	... 1 more
+28 Sep 2011 15:55:00,909 ERROR ~ 
+
+@68002hjmf
+Internal Server Error (500) for request GET /favicon.ico
+
+Execution exception (In /app/controllers/Application.java around line 20)
+NullPointerException occured : null
+
+play.exceptions.JavaExecutionException
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:229)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException
+	at controllers.Application.showCalendars(Application.java:20)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:546)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:500)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:476)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:471)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:159)
+	... 1 more

@@ -1,0 +1,139 @@
+\documentclass[a4paper,10pt,headlines=3.2]{scrartcl}
+\usepackage{graphicx}           %Bilder
+
+%\usepackage[T1]{fontenc}        %Umlaute
+%\usepackage[latin1]{inputenc}   %Windows
+%\usepackage[utf8x]{inputenc}	%Linux
+\usepackage{ucs}
+
+\usepackage[ngerman]{babel}     %Deutsche Sprache
+\usepackage{amsmath}            %Math. Zeichen
+\usepackage{pifont}             %Skalierbare Schriftart
+\usepackage{array}
+\usepackage{epsfig}             %Erweiterte Grafiken
+\usepackage{makeidx}            %Stichwortverzeichnis
+\usepackage[pdftex]{color} 
+
+\newcommand{\changefont}[3]{
+\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
+
+\makeindex
+
+\usepackage[automark]{scrpage2}
+\usepackage[nosectionbib]{apacite}               %Zitieren
+
+%\usepackage[colorlinks]{hyperref}%Hyperlinks
+
+\usepackage{lmodern}
+\usepackage{scrpage2}           %KOMA-Script
+\usepackage{tipa}
+\usepackage{qtree}
+\usepackage{wasysym}
+
+\usepackage{remreset}			%Fussnoten global
+\makeatletter
+\@removefromreset{footnote}{chapter}
+\makeatother 
+
+\setcounter{tocdepth}{3}
+
+%Kopfzeilen
+\pagestyle{scrheadings}         %Seitenstil scrheadings verwenden
+
+%\setlength{\textheight}{24cm}
+%\setlength{\textwidth}{16cm}
+%\setlength{\topmargin}{-2cm}
+%\setlength{\oddsidemargin}{0cm}
+
+% Groesse des Textbereiches in der Seite
+\setlength{\textwidth}{16cm}
+\setlength{\textheight}{22cm}
+% Kopf- und Fusszeile, Hoehe und Abstand vom Text
+\setlength{\headheight}{15pt}
+\setlength{\headsep}{0.8cm}
+% Linker Seiteneinzug
+\setlength{\oddsidemargin}{2.5cm} \addtolength{\oddsidemargin}{-1in}
+\setlength{\evensidemargin}{2.5cm} \addtolength{\evensidemargin}{-1in}
+% Andere Groessen ausrechnen (vertikal zentrieren)
+\setlength{\footskip}{\headsep}
+\addtolength{\footskip}{\headheight}
+\setlength{\topmargin}{\paperheight}
+\addtolength{\topmargin}{-\textheight}
+\addtolength{\topmargin}{-\headheight}
+\addtolength{\topmargin}{-\headsep}
+\addtolength{\topmargin}{-\footskip}
+\addtolength{\topmargin}{-2in}
+\addtolength{\topmargin}{-0.5\topmargin}
+
+%Abstand zurücksetzen
+\setlength{\headheight}{20pt}
+
+\usepackage{listings} 
+\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt} \lstset{language=Java} 
+\changefont{cmss}{m}{n}
+
+\clearscrheadfoot
+%\renewcommand{\headheight}{40pt} 
+\ihead[]{Datenbanken \\Frühlingssemester 2011 \\Institut für angewandte
+Mathematik} % - linke Kopfzeile 
+\ohead[asdasd]{Übung 6, Abgabe 5. April 2011 \\Adrianus Kleemans
+[07-111-693]\\Pinar Kayalar [10-123-453]} % - linke Kopfzeile 
+\setheadsepline{.4pt} %Separate Linie im Kopf
+\cfoot[\pagemark]{\pagemark} %- mittlere Fusszeile 
+
+
+\begin{document}
+\section*{Aufgabe 1}
+Abfragen:
+\begin{itemize}
+ \item Wähle alle Titel mit dem Preis aus, welche aus der Sparte Psychologie kommen und zwischen 7 und 19.99 \$
+kosten\footnote{Da die Abfrage 'umgangssprachlich' gestaltet werden soll, wird hier bereits eine Währung impliziert,
+obwohl eigentlich nur der Wert des Attributs \texttt{price}, dessen Domäne unbekannt ist, zwischen 7 und 19.99 sein
+muss.}.
+ \item Wähle alle Titel mit Preis aus, welche eine aktuelle Verkaufszahl zwischen der Höchstmenge und Niedrigstmenge
+einer bestimmten Auflage haben.
+\end{itemize}
+Korrekturen:
+\begin{itemize}
+ \item Die Attribute \texttt{city} und \texttt{state} kommen mehrfach vor, weshalb es Kollisionen mit den Namen gibt. Zudem sind ein einige Attribute falsch
+geschrieben (\texttt{au-lname} statt \texttt{au\_lname}, weiter \texttt{au-fname}, \texttt{pub-name}). Auch die
+Tabelle \texttt{titleauthors} gibt es nicht (korrigiert zu $\rightarrow$\texttt{titleauthor}).\\
+$\pi_{au\_lname, au\_fname, pub\_name}((((\pi_{au\_lname, au\_fname, au\_id}(authors))\bowtie titleauthor)\bowtie
+titles)\bowtie publishers)$
+
+ \item Die Attribute $pub_id, notitles, pub-id, title-id$ sind falsch. Korrigiert man diese, sollte die Anfrage klappen.
+\end{itemize}
+
+\section*{Aufgabe 2}
+\begin{itemize}
+ \item Angenommen Prädikat bezieht sich auf  s: $t \in s, t$ erfüllt $p$
+\begin{eqnarray}
+\sigma_{p}(r \times s) \rightarrow t \in s \\
+\sigma_{p}(r) \rightarrow t \notin r \\
+\sigma_{p}(r) \times s \\
+\textrm{(kein Element von r)} \times s \neq \sigma_{p}(r \times s)
+\end{eqnarray}
+
+ \item $x \in B$, r(A,B) - $y \in A$, s(B). \\
+Für jedes $x \in B$ gilt $x \in B(r)$. \\
+$r\div s \rightarrow y$ Elemente die alle $x$ von $B(s)$ enthalten.\\
+$r\div s\times r_s \rightarrow \vee y \in A$ und $\vee x \in B$.\\
+$\rightarrow$ alle $y$ von A die nicht alle $x$ von B enthalten fehlen.\\
+$r \div s \times s = r$ wenn alle r nur y enthält mit allen $x$ Elementen von $B(s)$.
+Wenn nicht alle $x\in B(s)$ auch Element von $B(r)$ sind dann kein $y$  alle $x$ enthalten $\rightarrow$ keine Lösung.
+
+\end{itemize}
+
+\section*{Aufgabe 3}
+\begin{itemize}
+ \item $4'000\cdot4'000 = 16'000'000 \rightarrow \cdot \frac{1}{4} = 4'000'000 \rightarrow \cdot \frac{1}{4} =
+1'000'000$ 
+ \item $\frac{1}{4}\cdot 4'000 = 1'000 \rightarrow \cdot 4'000 = 4'000'000 \rightarrow \cdot\frac{1}{4} = 1'000'000$ 
+\end{itemize}
+Die zweite Abfrage ist effizienter, da viel kleinere temporäre Tabellen erstellt werden. Es braucht nicht Platz für
+16'000'000, sondern nur für 4'000'000 Einträge. 
+
+\section*{Aufgabe 4}
+Eine einfache Abfrage in folgender Form genügt: $_{DreieckId}G_{avg(x),avg(x),avg(z)}$.
+
+\end{document}

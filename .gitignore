@@ -1,0 +1,71 @@
+# gitignore  v0.2
+# Most parts from github.com/github/gitignore
+
+# Java
+*.war
+*.ear
+
+# Eclipse
+*.pydevproject
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.project
+.classpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
+
+# In case some maniac uses Mac:
+.DS_Store
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# Same for Windows:
+
+# Windows image file caches
+Thumbs.db
+
+# Folder config file
+Desktop.ini
+
+# And Linux:
+.*
+!.gitignore
+*~
+
+# KDE
+.directory
+
+# Merge stuff:
+*.orig
+
+# ignore Maven scripts
+target/
+./target/
+
+# other stuff
+gen
+R.java

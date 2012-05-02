@@ -1,0 +1,21 @@
+				<!--
+				#{if specialDays.contains(day)}
+					#{if todayIsSpecialDay && day == today}
+						<li class="today"><a href="@{Application.index()}">${day}</a></li>
+					#{/if}
+					#{else}
+						#{if day == today}
+							<li class="today">${day}</li>
+						#{/if}
+						#{if EventDaysOfMonth.contains(day) && day != selectedDay} 
+							<li><a href="@{Application.showCalendar(calendarOwner.name, applicationUserName, calendar.name,"","","", day)}">${day}</a></li>
+						#{/if}
+						#{if EventDaysOfMonth.contains(day) && day == selectedDay} 
+							<li class="selected"><a href="@{Application.showCalendar(calendarOwner.name, applicationUserName, calendar.name,"","","", day)}">${day}</a></li>
+						#{/if}
+						
+					#{/else}
+				#{/if}
+				
+				#{else} <li>${day} </li>#{/else}
+				-->

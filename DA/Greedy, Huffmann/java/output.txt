@@ -1,0 +1,63 @@
+Eingabestring: In computer science and information theory, Huffmann coding is an entropy encoding algorithm used for lossless data compression.
+Keine Kinder vorhanden. Setze code: 00000 für g
+Keine Kinder vorhanden. Setze code: 00001 für p
+Keine Kinder vorhanden. Setze code: 00010 für l
+Keine Kinder vorhanden. Setze code: 00011 für u
+Keine Kinder vorhanden. Setze code: 001 für n
+Keine Kinder vorhanden. Setze code: 0100 für t
+Keine Kinder vorhanden. Setze code: 0101 für r
+Keine Kinder vorhanden. Setze code: 0110 für a
+Keine Kinder vorhanden. Setze code: 01110 für f
+Keine Kinder vorhanden. Setze code: 0111100 für I
+Keine Kinder vorhanden. Setze code: 0111101 für ,
+Keine Kinder vorhanden. Setze code: 0111110 für H
+Keine Kinder vorhanden. Setze code: 0111111 für .
+Keine Kinder vorhanden. Setze code: 1000 für i
+Keine Kinder vorhanden. Setze code: 1001 für s
+Keine Kinder vorhanden. Setze code: 101 für  
+Keine Kinder vorhanden. Setze code: 110000 für h
+Keine Kinder vorhanden. Setze code: 110001 für y
+Keine Kinder vorhanden. Setze code: 11001 für m
+Keine Kinder vorhanden. Setze code: 1101 für e
+Keine Kinder vorhanden. Setze code: 11100 für d
+Keine Kinder vorhanden. Setze code: 11101 für c
+Keine Kinder vorhanden. Setze code: 1111 für o
+0111100001101111011111110010000100011010011010101101100111101100011010011110111011010110001111001
+0110000010111011110101110010110010010001111001101010011000011011111010111000101111011010111110000
+1101110011101100101100010011011110111111110010000010000010110001001101011000110111010010100010111
+1100001110001101110100111101111111100100000100000101011000010000001111010110000100110000110011010
+0011100111011110010101110111101011010001011111001100100010110110011001101111000110010001101011110
+1111111001000010101110110011001100011110010111111
+
+Eingabestring: Huffmann coding results in a prefix code that expresses the most common characters using shorter strings of bits than are used for less common source symbols.
+Keine Kinder vorhanden. Setze code: 0000 für c
+Keine Kinder vorhanden. Setze code: 0001 für m
+Keine Kinder vorhanden. Setze code: 0010 für a
+Keine Kinder vorhanden. Setze code: 00110 für g
+Keine Kinder vorhanden. Setze code: 001110 für x
+Keine Kinder vorhanden. Setze code: 001111 für b
+Keine Kinder vorhanden. Setze code: 010 für s
+Keine Kinder vorhanden. Setze code: 0110 für n
+Keine Kinder vorhanden. Setze code: 0111 für t
+Keine Kinder vorhanden. Setze code: 10000 für u
+Keine Kinder vorhanden. Setze code: 100010 für p
+Keine Kinder vorhanden. Setze code: 100011 für d
+Keine Kinder vorhanden. Setze code: 10010 für h
+Keine Kinder vorhanden. Setze code: 10011 für f
+Keine Kinder vorhanden. Setze code: 1010 für r
+Keine Kinder vorhanden. Setze code: 101100 für l
+Keine Kinder vorhanden. Setze code: 1011010 für .
+Keine Kinder vorhanden. Setze code: 10110110 für H
+Keine Kinder vorhanden. Setze code: 10110111 für y
+Keine Kinder vorhanden. Setze code: 10111 für i
+Keine Kinder vorhanden. Setze code: 110 für  
+Keine Kinder vorhanden. Setze code: 1110 für o
+Keine Kinder vorhanden. Setze code: 1111 für e
+10110110100001001110011000100100110011011000001110100011101110110001101101010111101010000101100011
+10101101011101101100010110100010101011111001110111001110110000011101000111111110011110010001001111
+10111100111010001010101111010010111101011001111001011111100001111001001111100000111000010001111001
+10110000010010001010100010000001111111101001011010000010101110110001101100101001011101010011111111
+01011001001111010101110110001100101101110100111100011111011101110101100111100100010011011000101010
+11111101000001011111000111101001111101010110101100111101001011000001110000100011110011011001011101
+000010100000111111001010110111000100111111101011000101011010
+

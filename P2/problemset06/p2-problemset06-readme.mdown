@@ -1,0 +1,33 @@
+#Problemset 06
+
+The head of ACME Software Inc. assigns you as consultant to a new team. Your new team is known to despise best practices and to deliver code that smells. Naturally, they are overwhelmed by the sheer number of bugs in their code!
+
+As your first job, you're to help them find bugs in their linked list implementation. You are supposed to teach them how to use a debugger as you go along, and then put some best practices and coding convention in place.
+
+You should teach your team to
+
+1. Formulate a hypothesis about what went wrong.
+2. Verify your hypothesis using the debugger.
+3. Use Occam's razor to determine the simplest explanation for the behavior you observe.
+4. If the bug is not yet found, continue at #1.
+5. Explain the bug.
+
+##(1) Pull problemset06 into your repository.
+
+		git pull p2ubungen master
+
+##(2) Go bug hunting and provide your hypotheses.
+
+You will notice that out of the 11 test methods, only 4 pass. At least your new team is writing tests! Choose one of the tests, and then follow the steps above to fix the bug. Then, add a section into `hypotheses.mdown` that states your hypothesis, the result of your verification of that hypothesis with a screen shot that lets us confirm your reasoning, and your explanation of what you observed. 
+
+You don't need to make a section for each hypothesis that you iterate through, but make sure to have a few interesting ones in the file.
+
+Please be sure to write [valid Markdown](http://media.libsyn.com/media/howtube/Markdown_Cheat_Sheet.pdf) in the `hypotheses.md` file.
+
+##(4) Formulate best practices and coding conventions for your team.
+
+Please provide us with at least two coding rules that help to prevent the bugs that you've observed! Also, please provide at least one rule for writing better tests, as well as a rule for writing more maintainable and more readable code. More rules are pluses. Put the rules into a file called `coding-conventions.mdown`.
+
+##(5) Hand in the solution
+
+Then, push your solution to pinocchio.

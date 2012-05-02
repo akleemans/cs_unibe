@@ -1,0 +1,31 @@
+<simulator>
+	<processes>
+		<!-- FOR(i=0; i<5; i=i+1) nbInstr=[1,4]; -->
+		<process id="PROCESS<!-- =i; -->">
+			<arrival>0</arrival>
+			<instructions>
+				<instruction>
+					<type>CPU</type>
+					<length>12</length>
+				</instruction>
+				<!-- FOR(j=0; j<nbInstr; j=j+1) -->
+				<instruction>
+					<type>IO</type>
+					<length>6</length>
+					<device>DISK1</device>
+				</instruction>
+				<instruction>
+					<type>CPU</type>
+					<length><!-- =[8,16]; --></length>
+				</instruction>
+				<!-- ENDFOR -->
+			</instructions>
+		</process>
+		<!--ENDFOR-->
+	</processes>
+	<devices>
+		<device id="DISK1">
+			<type>I/O</type>
+		</device>
+	</devices>
+</simulator>

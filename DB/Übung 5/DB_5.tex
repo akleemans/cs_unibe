@@ -1,0 +1,295 @@
+\documentclass[a4paper,10pt,headlines=3.2]{scrartcl}
+\usepackage{graphicx}           %Bilder
+
+%\usepackage[T1]{fontenc}        %Umlaute
+%\usepackage[latin1]{inputenc}   %Windows
+%\usepackage[utf8x]{inputenc}	%Linux
+\usepackage{ucs}
+
+\usepackage[ngerman]{babel}     %Deutsche Sprache
+\usepackage{amsmath}            %Math. Zeichen
+\usepackage{pifont}             %Skalierbare Schriftart
+\usepackage{array}
+\usepackage{epsfig}             %Erweiterte Grafiken
+\usepackage{makeidx}            %Stichwortverzeichnis
+\usepackage[pdftex]{color} 
+
+\newcommand{\changefont}[3]{
+\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
+
+\makeindex
+
+\usepackage[automark]{scrpage2}
+\usepackage[nosectionbib]{apacite}               %Zitieren
+
+%\usepackage[colorlinks]{hyperref}%Hyperlinks
+
+\usepackage{lmodern}
+\usepackage{scrpage2}           %KOMA-Script
+\usepackage{tipa}
+\usepackage{qtree}
+\usepackage{wasysym}
+
+\usepackage{remreset}			%Fussnoten global
+\makeatletter
+\@removefromreset{footnote}{chapter}
+\makeatother 
+
+\setcounter{tocdepth}{3}
+
+%Kopfzeilen
+\pagestyle{scrheadings}         %Seitenstil scrheadings verwenden
+
+%\setlength{\textheight}{24cm}
+%\setlength{\textwidth}{16cm}
+%\setlength{\topmargin}{-2cm}
+%\setlength{\oddsidemargin}{0cm}
+
+% Groesse des Textbereiches in der Seite
+\setlength{\textwidth}{16cm}
+\setlength{\textheight}{22cm}
+% Kopf- und Fusszeile, Hoehe und Abstand vom Text
+\setlength{\headheight}{15pt}
+\setlength{\headsep}{0.8cm}
+% Linker Seiteneinzug
+\setlength{\oddsidemargin}{2.5cm} \addtolength{\oddsidemargin}{-1in}
+\setlength{\evensidemargin}{2.5cm} \addtolength{\evensidemargin}{-1in}
+% Andere Groessen ausrechnen (vertikal zentrieren)
+\setlength{\footskip}{\headsep}
+\addtolength{\footskip}{\headheight}
+\setlength{\topmargin}{\paperheight}
+\addtolength{\topmargin}{-\textheight}
+\addtolength{\topmargin}{-\headheight}
+\addtolength{\topmargin}{-\headsep}
+\addtolength{\topmargin}{-\footskip}
+\addtolength{\topmargin}{-2in}
+\addtolength{\topmargin}{-0.5\topmargin}
+
+%Abstand zurücksetzen
+\setlength{\headheight}{20pt}
+
+\usepackage{listings} 
+\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt} \lstset{language=Java} 
+\changefont{cmss}{m}{n}
+
+\clearscrheadfoot
+%\renewcommand{\headheight}{40pt} 
+\ihead[]{Datenbanken \\Frühlingssemester 2011 \\Institut für angewandte
+Mathematik} % - linke Kopfzeile 
+\ohead[asdasd]{Übung 5, Abgabe 29. März 2011 \\Adrianus Kleemans
+[07-111-693]\\Pinar Kayalar [10-123-453]} % - linke Kopfzeile 
+\setheadsepline{.4pt} %Separate Linie im Kopf
+\cfoot[\pagemark]{\pagemark} %- mittlere Fusszeile 
+
+
+\begin{document}
+\section*{Aufgabe 1}
+Evaluation der Relation $r$:\\
+\begin{center}
+\begin{tabular}{|c|c|c|c|l}\cline{1-4}
+\textbf{A} & \textbf{B} & \textbf{C} & \textbf{D} & \textbf{Evaluation}\\\cline{1-4}
+''A'' & 1000 & 3 & '''' & true\\\cline{1-4}
+''A'' & 700 & NULL & ''agh'' & unknown\\\cline{1-4}
+''A'' & NULL & 0 & ''abcdf'' & unknown\\\cline{1-4}
+''A'' & 1000 & 4 & NULL & true\\\cline{1-4}
+''B'' & NULL & NULL & ''bdf'' & unknown\\\cline{1-4}
+''B'' & 1500 & NULL & ''c'' & unknown\\\cline{1-4}
+NULL & 1000 & 8 & '''' & false\\\cline{1-4}
+NULL & 700 & 12 & NULL & true\\\cline{1-4}
+\end{tabular}
+\end{center}
+
+
+
+\begin{itemize}
+ \item $\sigma_{B\cdot C < 5000 \textrm{ or $D$ is unknown}}(r)$
+\begin{center}
+\begin{tabular}{|c|c|c|c|}\hline
+\textbf{A} & \textbf{B} & \textbf{C} & \textbf{D}\\\hline
+''A'' & 1000 & 3 & ''''\\\hline
+''A'' & 1000 & 4 & Null\\\hline
+Null & 700 & 12 & Null\\\hline
+\end{tabular}
+\end{center}
+ \item $_{A}g_{avg(B),sum(C)}(r)$
+\begin{center}
+\begin{tabular}{|c|c|c|}\hline
+\textbf{A} & \textbf{avg(B)} & \textbf{sum(C)}\\\hline
+''A'' & 675 & 7\\\hline
+''B'' & 750 & 0\\\hline
+\end{tabular}
+\end{center}
+
+ \item $_{A}g_{avg(B)}(\pi_{A,B}(r))$
+\begin{center}
+\begin{tabular}{|c|c|}\hline
+\textbf{A} & \textbf{avg(B)}\\\hline
+''A'' & 566.66\\\hline
+''B'' & 750\\\hline
+\end{tabular}
+\end{center}
+
+ \item natural join
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}\hline
+\textbf{A} & \textbf{B} & \textbf{C} & \textbf{D} & \textbf{E}\\\hline
+''B'' & NULL & NULL & ''bdf'' & 1\\\hline
+''B'' & 1500 & NULL & ''c'' & 1\\\hline
+\end{tabular}
+\end{center}
+
+ \item right outer join
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}\hline
+\textbf{A} & \textbf{B} & \textbf{C} & \textbf{D} & \textbf{E}\\\hline
+''B'' & NULL & NULL & ''bdf'' & 1\\\hline
+''B'' & 1500 & NULL & ''c'' & 1\\\hline
+''C'' & NULL & NULL & NULL & 2\\\hline
+''C'' & NULL & NULL & NULL & 3\\\hline
+\end{tabular}
+\end{center}
+\vspace*{2cm}
+ \item full outer join
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}\hline
+\textbf{A} & \textbf{B} & \textbf{C} & \textbf{D} & \textbf{E}\\\hline
+''A'' & 1000 & 3 & '''' & NULL\\\hline
+''A'' & 700 & NULL & ''agh'' & NULL\\\hline
+''A'' & NULL & 0 & ''abcdf'' & NULL\\\hline
+''A'' & 1000 & 4 & NULL & NULL\\\hline
+''B'' & NULL & NULL & ''bdf'' & 1\\\hline
+''B'' & 1500 & NULL & ''c'' & 1\\\hline
+NULL & 1000 & 8 & '''' & NULL\\\hline
+NULL & 700 & 12 & NULL & NULL\\\hline
+''C'' & NULL & NULL & NULL & 2\\\hline
+''C'' & NULL & NULL & NULL & 3\\\hline
+\end{tabular}
+\end{center}
+\end{itemize}
+
+\section*{Aufgabe 2}
+\lstset{frame=single}
+Wir nehmen an, dass $r.C$ $n$ und $s.C$ $m$ Elemente hat.\\
+Alle Algorithmen machen Gebrauch folgender Hilfsmethode:
+
+\begin{lstlisting}[caption=Unsortierte Listen]{Name}
+combine(tubel r, tupel s)
+t = new tupel
+n = size(r)
+m = size(s)
+
+for i=1 to n
+  add r[i] to t
+
+for j=2 to m
+  add s[j] to t
+
+return t
+\end{lstlisting}
+
+\begin{itemize}
+ \item Bei beidseits unsortierten Listen muss für jedes Element in $s.C$ das passende Schlüsselelement in $r.C$ gefunden werden, und dies kann nur beim Durchgehen durch alle Elemente erreicht werden. Dies ergibt eine Zeitkomplexität von $T(n) = \Theta(n\cdot m)$. Nehmen wir an, dass $n$ und $m$ gleichschnell wachsen, so könnte man die Zeitkomplexität auf $\Theta(n^2)$ vereinfachen.
+\begin{lstlisting}[caption=Unsortierte Listen]{Name}
+naturalJoinUnsorted(list r, list s)
+l = new list
+n = size(r)
+m = size(s)
+
+for i=1 to n
+  for j=1 to m
+    if r[i] = s[j]
+      add combine(r[i],s[j]) to l
+      next i
+
+return l
+\end{lstlisting}
+
+ \item Bei sortiertem $r.C$ muss für jedes Element in $s.C$ das passende Schlüsselelement in $r.C$ gefunden werden, und dies kann nur erreicht werden, indem man mit einer Suche in $r.C$ den (falls existierenden) richtigen Schlüssel sucht, welches eine Zeit von $\Theta(log(n))$ braucht\footnote{Z.B. durch halbieren, prüfen des mittleren Elements ob grösser oder kleiner des gesuchten, und das ganze zu wiederholen.}. Dies ergibt eine Zeitkomplexität von $T(n) = \Theta(n\cdot log(m))$. Nehmen wir an, dass $n$ und $m$ gleichschnell wachsen, so könnte man die Zeitkomplexität auf $\Theta(n\cdot log(n))$ vereinfachen.
+\begin{lstlisting}[caption=r.C ist sortiert]{Name}
+naturalJoinHalfSorted(list r, list s)
+l = new list
+n = size(r)
+m = size(s)
+
+for i=1 to n
+  logSearch(r[i] in s.C)
+    add combine(r[i],s[j]) to l
+
+return l
+\end{lstlisting}
+
+ \item Bei sortiertem $r.C$ und sortiertem $s.C$ muss das passende Schlüsselelement in $r.C$ gefunden werden, und dies
+kann sehr einfach erreicht werden, indem man für jedes Element von $s.C$ ($\Theta(n)$ wie in den vorigen) das
+nächsthöhere Element in $r.C$ untersucht (welches in konstanter Zeit ($\Theta(1)$) möglich ist\footnote{Um genau zu
+sein, beträgt die Laufzeit der inneren Schleife auch $\Theta(m)$, weil \texttt{key} durch jedes Element
+läuft (von 0 bis m). Daraus folgt eine gesamte Laufzeit von $\Theta(n\cdot m)$. Bei gleichschnellem Wachsen von $n$
+und $m$ ergibt dies $\Theta(2n)$, welches eine asymptotische Laufzeit von $\Theta(n)$ ergibt.}). Dies ergibt insgesamt
+eine Zeitkomplexität von $T(n) = \Theta(n)$.
+\begin{lstlisting}[caption=Beidseits sortiert]{Name}
+naturalJoinSorted(list r, list s)
+l = new list
+n = size(r)
+m = size(s)
+int key=0
+
+for i=1 to n
+  do
+    if r[i] = s[key]
+      add combine(r[i],s[j]) to l
+    key++
+    if r[i] < s[key]
+      key-1
+      next i
+  while (r[i] < s[key])
+
+return l
+\end{lstlisting}
+
+\end{itemize}
+
+\section*{Aufgabe 3}
+\begin{itemize}
+ \item $\sigma_{A>10}(r-t) = \sigma_{A>10}(r) - \sigma_{A>10}(t)$. Es bleiben in beiden Fällen nur die $x,y,z$ übrig,
+welche nur in $r$ enthalten sind und für welche $x>10$ gilt. Folgend ein Beispiel.
+{%
+\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
+\begin{center}
+\begin{tabular}{ccccccc}
+\textbf{} & \textbf{r} & \textbf{} & \textbf{} & \textbf{} & \textbf{t} & \textbf{}\\\cline{1-3}\cline{5-7}
+\mc{1}{|c|}{\textbf{A}} & \mc{1}{c|}{\textbf{B}} & \mc{1}{c|}{\textbf{C}} & \mc{1}{c|}{\textbf{}} &
+\mc{1}{c|}{\textbf{A}} & \mc{1}{c|}{\textbf{B}} & \mc{1}{c|}{\textbf{C}}\\\cline{1-3}\cline{5-7}
+\mc{1}{|c|}{1} & \mc{1}{c|}{2} & \mc{1}{c|}{3} & \mc{1}{c|}{} & \mc{1}{c|}{1} & \mc{1}{c|}{2} &
+\mc{1}{c|}{3}\\\cline{1-3}\cline{5-7}
+\mc{1}{|c|}{7} & \mc{1}{c|}{9} & \mc{1}{c|}{2} & \mc{1}{c|}{} & \mc{1}{c|}{7} & \mc{1}{c|}{8} &
+\mc{1}{c|}{5}\\\cline{1-3}\cline{5-7}
+\mc{1}{|c|}{12} & \mc{1}{c|}{7} & \mc{1}{c|}{8} & \mc{1}{c|}{} & \mc{1}{c|}{12} & \mc{1}{c|}{7} &
+\mc{1}{c|}{8}\\\cline{1-3}\cline{5-7}
+\mc{1}{|c|}{13} & \mc{1}{c|}{1} & \mc{1}{c|}{2} & \mc{1}{c|}{} & \mc{1}{c|}{11} & \mc{1}{c|}{1} &
+\mc{1}{c|}{2}\\\cline{1-3}\cline{5-7}
+\end{tabular}
+\end{center}
+}%
+
+\begin{center}
+\begin{tabular}{|c|c|c|}\hline
+\textbf{A} & \textbf{B} & \textbf{C}\\\hline
+13 & 1 & 2\\\hline
+\end{tabular}
+\end{center}
+
+ \item $r \bowtie (\sigma_{B=''X'' \vee C=''Z''}(s))$: Von (s) werden nur die Zeilen ausgewählt für die gilt $B=''X''
+\vee C=''Z''$\\
+Mit $\bowtie$ werden nur die Zeilen beachtet für die das gleiche gilt.
+
+$\sigma_{B=''X'' \vee C=''Z''}(r \bowtie s)$: Mit $r \bowtie s$ werden zwar alle Zeilen beachtet for die gilt
+$B(r)=B(s) \vee C(r)=C(s)$, aber nur die ausgewählt wo $B=''X''$ und $C=''Z''$. $\Rightarrow$ Damit sind die Ausdrücke
+äquivalent.
+
+ \item Angenommen $z\in B(r) \vee z\notin B(s)$. $r \div \pi_{B}(s)$ enthält nur die Spalten A und C von r. \\
+$r \div \pi_{B}(s) \times \pi_{B}(s)$ enthält nur die Spalten A(r), C(r) und B(s). Dass heisst, alle Elemente von B(r)
+die nicht Elemente von B(s) sind können nicht im Kreuzprodukt enthalten sein. D.h, auf der linken Seite wäre ein $z$
+vorhanden, aber auf der rechten nicht.
+
+\end{itemize}
+
+\end{document}

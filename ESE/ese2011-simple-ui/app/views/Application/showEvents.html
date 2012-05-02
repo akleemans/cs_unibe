@@ -1,0 +1,47 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<h1>Hello ${applicationUserName ?: 'guest'}!</h1>
+
+<h3>Events in Calendar "${ownerCalendar.name}" (Owner: ${calendarOwner.name})</h3>
+
+#{list items:events, as:'event'}
+	<p>Start Date: "${event.startDate}", End Date: "${event.endDate}", Event Name: "${event.name}" </p>
+#{/list}
+
+<h3>Add an event</h3>
+<p>(Users are only allowed to add events to their own calendars):</p>
+
+<h2><font color="#FF0000">${permissionMessage}</font></h2>
+
+#{form @Application.addEvent()}
+    <p>
+        <label for="eventName">Name of the Event: </label>
+        <input type="text" name="eventName" id="eventName" /> <font color="#FF0000">${eventNameMessage}</font>
+    </p>
+    <p>
+        <label for="eventStart">Start Date (dd.MM.yyyy HH.mm): </label>
+        <input type="text" name="eventStart" id="eventStart" /> <font color="#FF0000">${startDateMessage}</font>
+    </p>
+    <p>
+        <label for="eventEnd">End Date (dd.MM.yyyy HH.mm): </label>
+        <input type="text" name="eventEnd" id="eventEnd" /> <font color="#FF0000">${endDateMessage}</font>
+    </p>
+    <p>
+    	<input type="hidden" name="applicationUserName" id="applicationUserName" value="${applicationUserName}" />
+    	<input type="hidden" name="calendarOwnerName" id="calendarOwnerName" value="${calendarOwner.name}" />
+    	<input type="hidden" name="calendarName" id="calendarName" value="${ownerCalendar.name}" />
+    </p>
+    <p>
+    	<label for="isPrivate">Private Event</label>
+    	<input type="checkbox" name="isPrivate" id="isPrivate" />
+    </p>
+    <p>
+        <input type="submit" value="Submit your Event" />
+    </p>
+
+#{/form}
+
+<a href=@{Application.index()}>Home</a>
+<p><a href="javascript:history.back()">Back</a></p>
+<p><a href="/logout">log out</a></p>

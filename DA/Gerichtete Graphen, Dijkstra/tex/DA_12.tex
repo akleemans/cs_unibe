@@ -1,0 +1,127 @@
+\documentclass[a4paper,10pt,headlines=3.2]{scrartcl}
+
+%Für Windows:
+%\usepackage[T1]{fontenc}		%Umlaute
+%\usepackage[latin1]{inputenc}		%latin-Zeichensatz
+
+%\usepackage[colorlinks]{hyperref}	%Hyperlinks + Verlinkung innerhalb von PDFs
+
+\usepackage{ucs}			%Formatierung (Linux)
+\usepackage{graphicx}           	%Bilder
+\usepackage[ngerman]{babel}		%Deutsche Sprache
+\usepackage{amsmath}			%Math. Zeichen
+\usepackage{pifont}			%Skalierbare Schriftart
+\usepackage{array}			%Arrays
+\usepackage{epsfig}			%Erweiterte Grafiken
+\usepackage{makeidx}			%Stichwortverzeichnis
+\usepackage[pdftex]{color} 		%Farbige PDFs
+\newcommand{\changefont}[3]{    	%Definition von Schriftarten
+\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
+\makeindex				%Inhaltsverzeichnis erstellen
+\usepackage[automark]{scrpage2}		%scrpage
+\usepackage[nosectionbib]{apacite}	%Zitieren nach APA
+\usepackage{lmodern}			%Font: Latin modern
+\usepackage{scrpage2}           	%KOMA-Script
+\usepackage{tipa}			%Phonologische Symbole
+\usepackage{qtree}			%Baumstrukturen
+\usepackage{pgf}			%Rastergrafiken
+\usepackage{remreset}			%Fussnoten global
+\makeatletter				
+\@removefromreset{footnote}{chapter}	
+\makeatother 				
+\setcounter{tocdepth}{3}		%Inhaltsverzeichnis bis auf Tiefe 3 ausgeben
+\pagestyle{scrheadings}         	%Kopfzeilen: Seitenstil scrheadings verwenden
+\changefont{cmss}{m}{n}			%Schriftart: Computer-Schrift
+\usepackage{listings}			%Java-Quellcode ausgeben
+\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt} \lstset{language=Java} 
+
+
+%Manuelle Einstellung der Seitengrösse. Sonst automatisch, siehe unten.
+%\setlength{\textheight}{24cm}
+%\setlength{\textwidth}{16cm}
+%\setlength{\topmargin}{-2cm}
+%\setlength{\oddsidemargin}{0cm}
+
+% Groesse des Textbereiches in der Seite
+\setlength{\textwidth}{16cm}
+\setlength{\textheight}{22cm}
+% Kopf- und Fusszeile, Hoehe und Abstand vom Text
+\setlength{\headheight}{15pt}
+\setlength{\headsep}{0.8cm}
+
+%----------- wird automatisch berechnet
+% Linker Seiteneinzug
+\setlength{\oddsidemargin}{2.5cm} \addtolength{\oddsidemargin}{-1in}
+\setlength{\evensidemargin}{2.5cm} \addtolength{\evensidemargin}{-1in}
+% Andere Groessen ausrechnen (vertikal zentrieren)
+\setlength{\footskip}{\headsep}
+\addtolength{\footskip}{\headheight}
+\setlength{\topmargin}{\paperheight}
+\addtolength{\topmargin}{-\textheight}
+\addtolength{\topmargin}{-\headheight}
+\addtolength{\topmargin}{-\headsep}
+\addtolength{\topmargin}{-\footskip}
+\addtolength{\topmargin}{-2in}
+\addtolength{\topmargin}{-0.5\topmargin}
+%----------- 
+
+\setlength{\headheight}{20pt}		%Abstand zurücksetzen für Kopfzeile (3 Zeilen)
+\setheadsepline{.4pt}			%Separate Linie im Kopf
+\clearscrheadfoot
+\ihead[]{Datenstrukturen und Algorithmen \\Frühlingssemester 2011 \\Institut für angewandte Mathematik} % - links
+\ohead[asdasd]{Übung 12 \\Abgabetermin 26. Mai 2011 \\Adrianus Kleemans [07-111-693]} % - linke Kopfzeile 
+\cfoot[\pagemark]{\pagemark} 		%mittlere Fusszeile 
+
+\begin{document}
+\section*{Theoretische Aufgaben}
+\subsection*{Aufgabe 1}
+Der Algorithmus funktioniert nicht. Eine Zusammenhangskomponente beim ursprünglichen Algorithmus, welche den Knoten mit der grössten Endzeit enthält, hat keine Kante, die aus der Zusammenhangskomponente hinausgeht. Wird der Graph nicht transponiert und nimmt man die kleinste Endzeit, so kann gilt die obige Tatsache nicht.
+
+\subsection*{Aufgabe 2}
+Mit Kruskal: Die Kante wird als erstes ausgewählt und zur Lösungsmenge hinzugefügt. \\
+Mit Prim: Sobald der erste Knoten an der Kante ausgewählt wird (was früher oder später geschieht, da alle Knoten im minimalen Spannbaum vorkommen müssen), wird danach automatisch über die Kante der andere Knoten ausgewählt, wobei die Kante also im minimalen Spannbaum vorkommt.
+
+\subsection*{Aufgabe 3}
+Wenn \texttt{(u,v)} die leichteste Kante des Graphs ist, wird sie beim Kruskal-Algorithmus immer zuerst genommen (z.B. wie in Aufgabe 2). Dies heisst, dass eine Partitionierung der Knoten \textit{V} in disjunkte Mengen \textit{S} und \textit{V-S} auf jeden Fall bei der Kante \textit{(u,v)} geschnitten wird (da sie die leichteste ist und 'geschnitten' wird).
+
+\subsection*{Aufgabe 4}
+Sequenz der Kanten (Kruskal): \textbf{AF, FI, GH, BC, GK, BG, GJ, IE, BF, GD, GL}.
+
+\subsection*{Aufgabe 5}
+Sequenz der Kanten (Prim), Startknoten \textit{J} (zufällig): \textbf{JG, GH, GK, GB, BC, BF, FA, FI, IE, GL, GD}.
+
+\subsection*{Aufgabe 6}
+\begin{eqnarray}
+d(a), d(b), d(c), d(d), d(e) \Leftarrow  \infty   \\
+a \Rightarrow S\\
+d(a) \Leftarrow 0\\
+d(d) \Leftarrow 1\\
+d(c) \Leftarrow 3\\
+d(b) \Leftarrow 4\\
+d \Rightarrow S\\
+d(c) \Leftarrow 2\\
+c \Rightarrow S\\
+d(b) \Leftarrow 3\\
+d(e) \Leftarrow 8\\
+b \Rightarrow S\\
+d(e) \Leftarrow 5\\
+e \Rightarrow S
+\end{eqnarray}
+Dies ergibt folgende Minimaldistanzen: \texttt{a:0, b:3, c:2, d:1, e:5}.
+
+\subsection*{Aufgabe 7}
+Wenn im Vorraus bekannt ist, dass es einen MST mit Länge m gibt, brauchen wir nicht zu überprüfen, ob es einen gültigen Weg gibt. Das heisst, die Überprüfung am Ende des Algorithmus' fällt weg.
+
+\lstset{frame=single}
+\begin{lstlisting}[caption=Aufgabe 7]{Name}
+bellman-ford(G, w, s)
+for i := 1 to V - 1
+    for each edge (u,v) in E
+        relax(u,v,w)
+\end{lstlisting}
+
+\subsection*{Aufgabe 8}
+Es ist zwar eleganter, den verbleibenden Knoten auch aus der Warteschlange zu entfernen, aber dies hat keine Auswirkungen auf die korrekte Arbeitsweise des Algorithmus. \\\\
+Gegenbeweis: Sei der letzte Knoten der Knoten \textit{t}. Angenommen, es gibt für irgendeinen anderen Knoten \textit{u} einen kürzeren Weg, der über \textit{t} führt. Wenn jedoch die Anweisung \texttt{EXTRACT-MIN}, so sollte dieser Weg vor den anderen gegangen werden sein, und der Knoten \textit{t} wäre nicht der letzte übrigbleibende Knoten. Dies widerspricht der Annahme, \textit{t} sei der letzte Knoten. Dies kann verallgemeinert werden; Es gibt für einen beliebigen Knoten, der nicht der letzte Knoten ist, keinen kürzeren Weg über \textit{t}. somit wurde für alle Knoten der kürzeste Pfad gefunden.
+
+\end{document}

@@ -1,0 +1,153 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+#{navigation /}
+
+<div id="myModal" class="reveal-modal">
+     <h1>New calendar</h1>
+     <p>
+     Please enter a name for your new Calendar: 
+     <form name="form" action="@{CalendarController.createCalendar()}" method="GET">
+     <input type="text" name="calendarName" value="">
+     <input type="hidden" name="userName" value="${me.getName()}">
+     <input type="button" value="create" onClick="submit()">
+     </form>
+      </p>
+     <a class="close-reveal-modal">&#215;</a>
+</div>
+
+<h1>Home</h1>
+
+<h2>Your calendars <input type="button" value="new calendar" id="myButton" onclick="#myButton"> </h2>
+#{list items:calendars, as:'calendar'}
+${calendar.getName()} - 
+  <a href="@{CalendarController.showCalendar(calendar.getId(), me.getName(), s_activeDate)}"> view </a> - 
+  <a  href="javascript: deleteCalendar(${calendar.getId()})"> delete </a> <br>
+#{/list}
+<form name="deleteCal" action="@{CalendarController.deleteCalendar()}" method="GET"><input type="hidden" name="calendarId" value="" /></form>
+
+<h2>Your account</h2>
+<a href="@{UserController.showProfile(me.getName())}"> view profile </a><br>
+<a href="@{UserController.showEditProfile()}"> edit profile </a><br>
+<a href="javascript: deleteAccount()"> delete account</a>
+
+<!-- 
+<h2>Invitations to events</h2>
+#{if !me.eventsToAccept.isEmpty()} 
+You have been invited to the following events: <br>
+#{list me.eventsToAccept, as:'request'}
+	${(String)request[3]}: <a href="@{MessageSystem.accept((long)request[0],(long)request[1],(long)request[2])}"> accept </a>
+	<br>
+#{/list}
+#{/if}
+ -->
+<br>
+<input type="button" value="check invitations" id="invitationButton" onclick="#invitationButton">
+
+<div id="invitations" class="reveal-modal">
+	<h2>Invitations to events</h2>
+	<p>
+	#{if !me.eventsToAccept.isEmpty()}
+		You have been invited to the following events: <br>
+		#{list me.eventsToAccept, as:'request'}
+		${(String)request[3]}: <a href="@{MessageSystem.accept((long)request[0],(long)request[1],(long)request[2])}"> accept </a>
+		<a href="@{MessageSystem.decline((long)request[0],(long)request[1],(long)request[2])}"> decline </a>
+		<br>
+		#{/list}
+	#{/if}
+	#{else}
+	No invitations pending.
+	#{/else}
+	</p>
+	<a class="close-reveal-modal">&#215;</a>
+</div>
+
+
+<script type="text/javascript">
+function deleteCalendar(calendarId) {
+	calendarId = parseInt(calendarId, 10);
+	document.deleteCal.calendarId.value = calendarId;
+	
+	var answer = confirm ("Are you REALLY sure? This can NOT be undone!")
+	if (answer)
+		document.forms.deleteCal.submit();
+	else
+		alert ("Okay, don't worry, nothing happened.")
+}
+function deleteAccount(calendarId) {
+	calendarId = parseInt(calendarId, 10);
+	document.deleteCal.calendarId.value = calendarId;
+	
+	var answer = confirm ("Are you REALLY sure? This can NOT be undone!")
+	if (answer)
+		window.location.href = "@{UserController.deleteMyAccount()}";
+}
+
+</script>
+
+<h2>Followed calendars</h2>
+#{list items:me.getObservedCalendars(), as:'calendar'}
+#{if calendar.getName()!="Birthdays"}
+<a href="@{CalendarController.showCalendar(calendar.getId(), calendar.getOwner(), s_activeDate)}"> ${calendar.getName() + " (" + calendar.getOwner() + ")"} </a><br>
+#{/if}
+#{/list}
+
+<script type="text/javascript" charset="utf-8">
+var searchAction = #{jsAction @UserController.searchUser(':query') /}
+var editAction = #{jsAction @CalendarController.showCalendarList(':userName') /}
+var saveAction = #{jsAction @CalendarController.showCalendar(':userName') /}
+
+//If you type in the #search field, an ajax request is fired and the response is stored in the results-div
+$(document).ready(function (){
+	$('#search').keyup(function () {
+		$('#results p').load(searchAction({query: this.value}));
+	});		
+});
+
+//If you click on a user, the modal-div is filled with the edit functions
+$('a[modal-user-name]').live('click', function(e) {
+		$('#modal p').load(editAction({userName: $(this).attr('modal-user-name')}));
+});
+
+//If you click on the save button, the user is saved, the modal-div gets filled with the response and the results-div gets filled with the new search results (because one user's name's been changed)
+$(document).ready(function() {
+     $('#save').click(function() {
+     console.log(newName.value);
+     console.log(oldName.value);
+	  $('#modal p').load(saveAction({newName: newName.value, oldName: oldName.value}));
+	  $('#results p').load(searchAction({query: search.value}));
+     });
+});
+
+</script>
+
+<h2> Search for a User</h2>
+
+<input type="text" id="search" name="search">
+
+<div id="results">
+	<p>
+	</p>
+</div>
+
+<div id="modal" class="reveal-modal">
+	<p>
+	</p>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	#{if !me.eventsToAccept.isEmpty() && freshlyLoggedIn}
+	$('#invitations').reveal();
+	#{/if}
+	
+	$('#myButton').click(function(e) {
+		e.preventDefault();
+		$('#myModal').reveal();
+	});
+	$('#invitationButton').click(function(e) {
+		e.preventDefault();
+		$('#invitations').reveal();
+	});
+	
+});
+</script>

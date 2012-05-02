@@ -1,0 +1,2 @@
+id : 1    ;    title  :  Atonement;author:Ian McEwan; year :   2007  ;   price  :  29 ; 
+id : 2   ;  author  :    Max Frisch  ; title:Andorra; year  :   1961  ;  price :  38;

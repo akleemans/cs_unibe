@@ -1,0 +1,168 @@
+\documentclass[a4paper,10pt,headlines=3.2]{scrartcl}
+
+% Basispakete
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage[automark]{scrpage2}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{ifthen}
+\usepackage{calc}
+\usepackage{fancybox}
+\usepackage{tikz}
+\usepackage{ngerman}
+
+\usepackage{graphicx}           %Bilder
+\usepackage{amsmath}            %Math. Zeichen
+\usepackage{pifont}             %Skalierbare Schriftart
+\usepackage{array}
+\usepackage{epsfig}             %Erweiterte Grafiken
+\usepackage{makeidx}            %Stichwortverzeichnis
+\usetikzlibrary{automata,positioning}
+\usepackage[left=30mm,right=20mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{mdframed}
+
+\newcommand{\changefont}[3]{
+\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
+
+\makeindex
+
+\usepackage[automark]{scrpage2}
+\usepackage[nosectionbib]{apacite}               %Zitieren
+
+\usepackage{lmodern}
+\usepackage{scrpage2}           %KOMA-Script
+\usepackage{tipa}
+\usepackage{qtree}
+
+\usepackage{remreset}			%Fussnoten global
+\makeatletter
+\@removefromreset{footnote}{chapter}
+\makeatother 
+
+\setcounter{tocdepth}{3}
+
+%Kopfzeilen
+\pagestyle{scrheadings}         %Seitenstil scrheadings verwenden
+
+% Groesse des Textbereiches in der Seite
+\setlength{\textwidth}{16cm}
+\setlength{\textheight}{21.3cm}
+% Kopf- und Fusszeile, Hoehe und Abstand vom Text
+\setlength{\headheight}{15pt}
+\setlength{\headsep}{0.8cm}
+% Linker Seiteneinzug
+\setlength{\oddsidemargin}{2.5cm} \addtolength{\oddsidemargin}{-1in}
+\setlength{\evensidemargin}{2.5cm} \addtolength{\evensidemargin}{-1in}
+% Andere Groessen ausrechnen (vertikal zentrieren)
+\setlength{\footskip}{\headsep}
+\addtolength{\footskip}{\headheight}
+\setlength{\topmargin}{\paperheight}
+\addtolength{\topmargin}{-\textheight}
+\addtolength{\topmargin}{-\headheight}
+\addtolength{\topmargin}{-\headsep}
+\addtolength{\topmargin}{-\footskip}
+\addtolength{\topmargin}{-2in}
+\addtolength{\topmargin}{-0.5\topmargin}
+
+%Abstand zurücksetzen
+\setlength{\headheight}{20pt}
+
+\usepackage{listings} 
+\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt} \lstset{language=Java} 
+\changefont{cmss}{m}{n}
+
+%Tabellen
+\usepackage{booktabs}
+\usepackage{multirow}
+
+%Kopfzeilen
+\clearscrheadfoot
+\ihead[]{Automaten und formale Sprachen \\Frühlingssemester \\Institut für angewandte
+Mathematik} % - linke Kopfzeile 
+\ohead[asdasd]{Übungsaufgaben \\ Name \\ Name} % - linke Kopfzeile 
+\setheadsepline{.4pt} %Separate Linie im Kopf
+\cfoot[\pagemark]{\pagemark} %- mittlere Fusszeile 
+
+\begin{document}
+\section{Aufgabe}
+\begin{align}
+G = (T, N, S, P) \\
+T = \{a, b, c\} \\
+N = \{ S, X\} \\
+P = \{ S &\mapsto X \\
+X &\mapsto XX \\
+X &\mapsto aa \\
+X &\mapsto bb \\
+X &\mapsto cc \}
+\end{align}
+Konstruktion eines DEA:
+\begin{align}
+\Sigma &= T \\
+Q &= N \cup \{q_2\} = \{q_0, q_1, q_2, q_3\} \\
+q_0 &= S \\
+F &= \{q_f\} = q_0 \\
+\delta(q_0, a) &= q_1 \\
+\delta(q_1, a) &= q_1 \\
+\delta(q_0, b) &= q_1 \\
+\delta(q_2, b) &= q_1 \\
+\delta(q_0, c) &= q_1 \\
+\delta(q_3, c) &= q_1 \\
+\end{align}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.5, auto,swap]
+\foreach \pos/\name/\disp/\initial/\accepting in {  % define nodes: position | name | displayed name | initial? | accepting?
+  {(0,1)/q0/q_0/initial/accepting}, 
+  {(2,0)/q3/q_3//},
+  {(3,1)/q2/q_2//}, 
+  {(2,2)/q1/q_1//}}
+\node[state,\initial,\accepting,minimum size=20pt,inner sep=0pt] (\name) at \pos {$\disp$};
+\foreach \source/\dest/\name/\pos in { % connect nodes: source | destination | position of text
+  q0/q1/a/above,
+  q1/q0/a/below,
+  q0/q2/b/above,
+  q2/q0/b/below,
+  q0/q3/c/above,
+  q3/q0/c/below}
+\path[draw,\pos,thick,->] (\source) -- node {$\name$} (\dest);
+\end{tikzpicture}
+\end{center}
+
+\section{Aufgabe}
+\begin{center}
+\begin{tabular}{c|c|c|c|}
+\textbf{} & \textbf{a} & \textbf{b} & \textbf{c}\\\hline
+\textbf{$q_0$} & $q_1$ & $q_3$ & $q_5$\\\hline
+\textbf{$q_1$} & - & $q_2$ & $q_6$\\\hline
+\textbf{$q_2$} & - & - & $q_0$\\\hline
+\textbf{$q_3$} & $q_2$ & - & $q_4$\\\hline
+\textbf{$q_4$} & $q_0$ & - & -\\\hline
+\textbf{$q_5$} & $q_6$ & $q_4$ & -\\\hline
+\textbf{$q_6$} & - & $q_0$ & -\\\hline
+\end{tabular}
+\end{center}
+
+\begin{align}
+G &= (T, N, S, P) \\
+T &= \{a, b, c\} \\
+N &= \{S, A, B, C, D, E, F\} \\
+P = \{ S &\mapsto aA \\
+A &\mapsto bD \\
+A &\mapsto cE \\
+D &\mapsto cS \\
+D &\mapsto c \\
+S &\mapsto bB \\
+B &\mapsto aD \\
+B &\mapsto cF \\
+E &\mapsto bS \\
+E &\mapsto b \\
+S &\mapsto cC \\
+C &\mapsto aE \\
+C &\mapsto bF \\
+F &\mapsto aS \\
+F &\mapsto a \}
+\end{align}
+
+\end{document}

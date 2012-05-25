@@ -1,0 +1,189 @@
+\documentclass[a4paper,10pt,headlines=3.2]{scrartcl}
+
+% Basispakete
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage[automark]{scrpage2}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{ifthen}
+\usepackage{calc}
+\usepackage{fancybox}
+\usepackage{tikz}
+\usepackage{ngerman}
+
+\usepackage{graphicx}           %Bilder
+\usepackage{amsmath}            %Math. Zeichen
+\usepackage{pifont}             %Skalierbare Schriftart
+\usepackage{array}
+\usepackage{epsfig}             %Erweiterte Grafiken
+\usepackage{makeidx}            %Stichwortverzeichnis
+\usetikzlibrary{automata,positioning}
+\usepackage[left=30mm,right=20mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{mdframed}
+
+\newcommand{\changefont}[3]{
+\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
+
+\makeindex
+
+\usepackage{lmodern}
+\usepackage{scrpage2}           %KOMA-Script
+\usepackage{tipa}
+\usepackage{qtree}
+
+\usepackage{remreset}           %Fussnoten global
+\makeatletter
+\@removefromreset{footnote}{chapter}
+\makeatother 
+
+\setcounter{tocdepth}{3}
+
+%Kopfzeilen
+\pagestyle{scrheadings}         %Seitenstil scrheadings verwenden
+
+% Groesse des Textbereiches in der Seite
+\setlength{\textwidth}{16cm}
+\setlength{\textheight}{21.3cm}
+% Kopf- und Fusszeile, Hoehe und Abstand vom Text
+\setlength{\headheight}{15pt}
+\setlength{\headsep}{0.8cm}
+% Linker Seiteneinzug
+\setlength{\oddsidemargin}{2.5cm} \addtolength{\oddsidemargin}{-1in}
+\setlength{\evensidemargin}{2.5cm} \addtolength{\evensidemargin}{-1in}
+% Andere Groessen ausrechnen (vertikal zentrieren)
+\setlength{\footskip}{\headsep}
+\addtolength{\footskip}{\headheight}
+\setlength{\topmargin}{\paperheight}
+\addtolength{\topmargin}{-\textheight}
+\addtolength{\topmargin}{-\headheight}
+\addtolength{\topmargin}{-\headsep}
+\addtolength{\topmargin}{-\footskip}
+\addtolength{\topmargin}{-2in}
+\addtolength{\topmargin}{-0.5\topmargin}
+
+%Abstand zurücksetzen
+\setlength{\headheight}{20pt}
+
+\usepackage{listings} 
+\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt} \lstset{language=Java} 
+\changefont{cmss}{m}{n}
+
+%Tabellen
+\usepackage{booktabs}
+\usepackage{multirow}
+
+%Kopfzeilen
+\clearscrheadfoot
+%\renewcommand{\headheight}{40pt} 
+\ihead[]{Automaten und formale Sprachen \\Frühlingssemester \\Institut für angewandte
+Mathematik} % - linke Kopfzeile 
+\ohead[asdasd]{Übungsaufgaben \\ Name \\ Name} % - linke Kopfzeile 
+\setheadsepline{.4pt} %Separate Linie im Kopf
+\cfoot[\pagemark]{\pagemark} %- mittlere Fusszeile 
+
+\begin{document}
+\section{Konstruktion des regulären Ausdrucks}
+Die Zustände können wie folgt nummeriert und dargestellt werden:
+\begin{center}
+\begin{tikzpicture}[scale=1.5, auto,swap]
+\foreach \pos/\name/\disp/\initial/\accepting in {  % define nodes: position | name | displayed name | initial? | accepting?
+  {(1,0)/q1/q_1/initial/accepting}, 
+  {(1,2)/q2/q_2//},
+  {(3,1)/q3/q_3//}, 
+  {(-1,1)/q4/q_4//}}
+\node[state,\initial,\accepting,minimum size=20pt,inner sep=0pt] (\name) at \pos {$\disp$};
+\foreach \source/\dest/\name/\pos in { % connect nodes: source | destination | position of text
+  q1/q2/a/left,
+  q2/q3/b/above,
+  q2/q4/c/above,
+  q3/q1/c/below,
+  q4/q1/b/below}
+\path[draw,\pos,thick,->] (\source) -- node {$\name$} (\dest);
+\end{tikzpicture}
+\end{center}
+
+\begin{align}
+A(E) &= r^{4}_{11} + r^{4}_{14} \\
+r^{4}_{11} &= r^{3}_{14} (r^{3}_{44})^{*} r^{3}_{41} + r^{3}_{11} \\
+r^{3}_{11} &= r^{2}_{13} (r^{2}_{33})^{*} r^{2}_{31} + r^{2}_{11} \\
+r^{2}_{11} &= \emptyset \\
+&\text{Zwischenresultat: } r^{4}_{11} = r^{3}_{14} (r^{3}_{44})^{*} r^{3}_{41} + r^{2}_{13} (r^{2}_{33})^{*} r^{2}_{31} \\
+r^{3}_{14} &= r^{2}_{13} (r^{2}_{33})^{*} r^{2}_{34} + r^{2}_{14} = ab (cab)^{*} cac + ac \\
+r^{3}_{44} &= r^{2}_{43} (r^{2}_{33})^{*} r^{2}_{34} + r^{2}_{44} = bab (cab)^{*} cac + bac \\
+r^{3}_{41} &= r^{2}_{43} (r^{2}_{33})^{*} r^{2}_{31} + r^{2}_{41} = bab (cab)^{*} c + b \\
+r^{2}_{13} &= ab \\
+r^{2}_{33} &= cab \\
+r^{2}_{31} &= r^{1}_{32} (r^{1}_{22})^{*} r^{1}_{21} + r^{1}_{31} = r^{1}_{31} = c \\
+\Rightarrow r^{4}_{11} &= (ab (cab)^{*} cac + ac) (bab (cab)^{*} cac + bac)^{*} (bab (cab)* c + b ) + (ab) (cab)^{*} (c)
+\end{align}
+Intuitiv würde man meinen, dass
+\begin{align}
+(abc)^{*} + (acb)^{*}
+\end{align}
+die Lösung ist, aber gemäss Regeln im Buch kann obiges Resultat (13) hergeleitet werden.
+
+\section{Permutationsgruppe}
+a) \\
+Mit folgendem Ausdruck kann eine Regelmenge produziert werden, um für beliebige n eine Regelmenge zu erhalten.
+\begin{align}
+P = \left \{ \bigcup _{i=1}^{n} \bigcup_{j=i+1}^{n} X_i X_j \right \}
+\end{align}
+Anzahl der Regeln für ein gewisses $n$:
+\begin{align}
+\sum_{k=1}^{n} 2\cdot (k-1)
+\end{align}
+
+Für $n=3$ ergibt dies folgende 6 Produktionen:
+\begin{align}
+S \rightarrow X_1 X_2 X_3 \\
+X_1 X_2 \rightarrow X_2 X_1 \\
+X_2 X_1 \rightarrow X_1 X_2 \\
+X_1 X_3 \rightarrow X_3 X_1 \\
+X_3 X_1 \rightarrow X_1 X_3 \\
+X_2 X_3 \rightarrow X_3 X_2 \\
+X_3 X_2 \rightarrow X_2 X_3
+\end{align}
+Beweis der Korrektheit: Mit den entstandenen Produktionsregeln können alle nebeneinander stehenden $X_i X_j$ mit $i, j < n$ beliebig vertauscht werden. Da bei jeder Produktion nicht nur die Anzahl, sondern die genauen Zeichen erhalten bleiben, kann genau die Permutationsgruppe gebildet werden, aber nichts anderes. 
+\begin{itemize}
+\item Ableitung für 321:
+\begin{align}
+S \rightarrow X_1 X_2 X_3
+X_1 X_2 X_3 \rightarrow X_1 X_3 X_2 \\
+X_1 X_3 X_2 \rightarrow X_3 X_1 X_2 \\
+X_3 X_1 X_2 \rightarrow X_3 X_2 X_1 \\
+X_3 X_2 X_1 \rightarrow 321
+\end{align}
+\item Ableitung für 312:
+\begin{align}
+S \rightarrow X_1 X_2 X_3 \\
+X_1 X_2 X_3 \rightarrow X_1 X_3 X_2 \\
+X_1 X_3 X_2 \rightarrow X_3 X_1 X_2 \\
+X_3 X_1 X_2 \rightarrow 312 
+\end{align}
+\end{itemize}
+b) \\
+Da die Bedingung gilt, dass der Ausdruck recht die Länge $n-1$ haben soll, ist Typ-3 sicht nicht möglich, da sonst bei jeder Produktion ein terminales Zeichen erzeugt werden müsste, ohne den Rest zu verändern, und dabei noch falsche Produktionen vermieden werden müssten. Bei Typ-2 wäre auch das Problem, dass sie kontextfrei ist, und dabei auch falsche Ausdrücke generiert werden könnten. Evtl. würde in Typ-1 eine Lösung existieren, wenn bestimmte zusätzliche Non-Terminals eingeführt werden würden, die sich nur im Kontext zu anderen Non-Terminals richtig zu Terminals ableiten lassen würden und dabei falsche Produktionen vermeiden. Die Regelmenge dürfte aber beträchtlich steigen. Die obige Grammatik ist Typ-0.
+
+\section{Erzeugung Grammatik}
+Analog zu Abbildung 9.1 wird als Ziel $A\hat{B}CBA$ festgelegt (Unterscheidung der beiden $B$s) und folgende Produktionen festgelegt:
+\begin{align}
+S \rightarrow aS\hat{B} CBA \\
+S \rightarrow S\hat{B} \hat{B}C \\
+C\hat{B}  \rightarrow \hat{B}C \\
+\hat{B}C  \rightarrow  C\hat{B} \\
+CB  \rightarrow  BC \\
+BA  \rightarrow  AB \\
+a\hat{B}  \rightarrow  ab \\
+b\hat{B}  \rightarrow  bb \\
+bC  \rightarrow  bc \\
+cC   \rightarrow cc \\
+cB  \rightarrow  cb \\
+bB  \rightarrow bb \\
+bA  \rightarrow ba \\
+aA  \rightarrow aa
+\end{align}
+Damit lässt sich zu Beginn (wie in der Abbildung) soweit wie nötig expandieren (über $S \rightarrow aS\hat{B} CBA$), bis die gewünschte Länge erreicht ist, und danach mit den Produktionen bis zu den Terminals ($a^n b^n c^n b^n a^n$) auflösen.
+
+\end{document}
